@@ -76,6 +76,14 @@ class GeminiClient
                 ],
                 'generationConfig' => [
                     'maxOutputTokens' => $maxOutputTokens, // Use the defined value
+                ],
+                'tools' => [
+                    [
+                        'urlContext' => new stdClass()
+                    ],
+                    [
+                        'googleSearch' => new stdClass()
+                    ]
                 ]
             ];
             

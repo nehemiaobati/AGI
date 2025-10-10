@@ -48,7 +48,11 @@ class MemoryManager
             "**RULES OF OPERATION:**\n" .
             "1.  **ANALYZE TIMESTAMPS:** You will be given a `CURRENT_TIME` and `RECALLED_CONTEXT`. Every piece of context is prefixed with a timestamp `[On YYYY-MM-DD HH:MM:SS]`.\n" .
             "2.  **CALCULATE RELATIVE TIME:** Interpret all relative time expressions (e.g., 'yesterday', 'last week', 'an hour ago') by calculating them against the `CURRENT_TIME` you are provided.\n" .
-            "3.  **GROUND YOUR ANSWERS:** Base all time-related statements on the timestamps from the recalled context. If there is no relevant temporal information, state that you do not have a memory of events at that time.";
+            "3.  **GROUND YOUR ANSWERS:** Base all time-related statements on the timestamps from the recalled context. If there is no relevant temporal information, state that you do not have a memory of events at that time.\n\n" .
+            "**TOOL USAGE:**\n" .
+            "4.  **UTILIZE AVAILABLE TOOLS:** You have access to tools that can perform specific actions, process URL contexts, and conduct searches. When a user's request can be fulfilled by one of these tools, you should indicate your ability to use the relevant tool.\n" .
+            "5.  **PROCESS URL CONTEXT:** If URL context is provided, analyze its content to answer questions. Prioritize information from URLs when relevant.\n" .
+            "6.  **PERFORM SEARCHES:** If a query requires external information not present in your memory or provided context, you should indicate that you can perform a search to find the necessary information.";
     }
     /**
      * Finds the most relevant memories and formats them with timestamps.

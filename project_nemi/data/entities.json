@@ -1,15 +1,1405 @@
 {
-    "about": {
-        "name": "about",
+    "\"**primary": {
+        "name": "\"**primary",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "\"**rules": {
+        "name": "\"**rules",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "\"[on": {
+        "name": "\"[on",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "\"directory": {
+        "name": "\"directory",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
+    "\"https:\/\/en": {
+        "name": "\"https:\/\/en",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e916d91e8e62.27990100"
+        ]
+    },
+    "\"https:\/\/www": {
+        "name": "\"https:\/\/www",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e9168ee687f6.65735400",
+            "int_68e91f7385fa03.15189777"
+        ]
+    },
+    "\"your": {
+        "name": "\"your",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$a['relevance_score']": {
+        "name": "$a['relevance_score']",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$a['relevance_score']);": {
+        "name": "$a['relevance_score']);",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$aioutput": {
+        "name": "$aioutput",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$b['relevance_score']": {
+        "name": "$b['relevance_score']",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$b['relevance_score']);": {
+        "name": "$b['relevance_score']);",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$context": {
+        "name": "$context",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$entities": {
+        "name": "$entities",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$entitykey": {
+        "name": "$entitykey",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$entitykey)": {
+        "name": "$entitykey)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$id)": {
+        "name": "$id)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$id;": {
+        "name": "$id;",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$inputentities": {
+        "name": "$inputentities",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$interaction['relevance_score']": {
+        "name": "$interaction['relevance_score']",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$interactionid):": {
+        "name": "$interactionid):",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$interactionid;": {
+        "name": "$interactionid;",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$interactions": {
+        "name": "$interactions",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$keyword": {
+        "name": "$keyword",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$keyword)": {
+        "name": "$keyword)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$keywords": {
+        "name": "$keywords",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$keywords]": {
+        "name": "$keywords]",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$memory)": {
+        "name": "$memory)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$memorytext": {
+        "name": "$memorytext",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$memorytext;": {
+        "name": "$memorytext;",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$memorytokencount": {
+        "name": "$memorytokencount",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$memorytokencount;": {
+        "name": "$memorytokencount;",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$newid": {
+        "name": "$newid",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$newid);": {
+        "name": "$newid);",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$relevantinteractionids": {
+        "name": "$relevantinteractionids",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$relevantmemories": {
+        "name": "$relevantmemories",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$relevantmemories[$id]": {
+        "name": "$relevantmemories[$id]",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$stopwords": {
+        "name": "$stopwords",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$stopwords)": {
+        "name": "$stopwords)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$text": {
+        "name": "$text",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$text):": {
+        "name": "$text):",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$text);": {
+        "name": "$text);",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->entities": {
+        "name": "$this->entities",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->entities[$entitykey]": {
+        "name": "$this->entities[$entitykey]",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->entities[$entitykey]['access_count']++;": {
+        "name": "$this->entities[$entitykey]['access_count']++;",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->entities[$entitykey]['mentioned_in']))": {
+        "name": "$this->entities[$entitykey]['mentioned_in']))",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->entities[$entitykey]['mentioned_in']);": {
+        "name": "$this->entities[$entitykey]['mentioned_in']);",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->entities[$entitykey]['mentioned_in'][]": {
+        "name": "$this->entities[$entitykey]['mentioned_in'][]",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->entities[$entitykey]['relevance_score']": {
+        "name": "$this->entities[$entitykey]['relevance_score']",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->extractentities($userinput);": {
+        "name": "$this->extractentities($userinput);",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->interactions": {
+        "name": "$this->interactions",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->interactions[$id];": {
+        "name": "$this->interactions[$id];",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->interactions[$id]['last_accessed']": {
+        "name": "$this->interactions[$id]['last_accessed']",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->interactions[$id]['relevance_score']": {
+        "name": "$this->interactions[$id]['relevance_score']",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->interactions[$newid]": {
+        "name": "$this->interactions[$newid]",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->loadmemory();": {
+        "name": "$this->loadmemory();",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->prunememory();": {
+        "name": "$this->prunememory();",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$this->updateentitiesfrominteraction($keywords": {
+        "name": "$this->updateentitiesfrominteraction($keywords",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$timestamp": {
+        "name": "$timestamp",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$tokencount": {
+        "name": "$tokencount",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$uniqueinteractionids": {
+        "name": "$uniqueinteractionids",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$usedinteractionids": {
+        "name": "$usedinteractionids",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$usedinteractionids):": {
+        "name": "$usedinteractionids):",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$usedinteractionids[]": {
+        "name": "$usedinteractionids[]",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$userinput": {
+        "name": "$userinput",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$userinput):": {
+        "name": "$userinput):",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "$words": {
+        "name": "$words",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "&$interaction)": {
+        "name": "&$interaction)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'access_count'": {
+        "name": "'access_count'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'ai_output'": {
+        "name": "'ai_output'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'an'": {
+        "name": "'an'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'concept'": {
+        "name": "'concept'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'context'": {
+        "name": "'context'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'description'": {
+        "name": "'description'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'for'": {
+        "name": "'for'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'https:\/\/www": {
+        "name": "'https:\/\/www",
+        "type": "Concept",
+        "description": "",
+        "access_count": 5,
+        "relevance_score": 3,
+        "mentioned_in": [
+            "int_68e9140849cd77.93796273",
+            "int_68e9143d4067a7.32049590",
+            "int_68e91ece1e6501.07404799",
+            "int_68e91ef169da30.68892272",
+            "int_68e91f2b16fc86.51535052"
+        ]
+    },
+    "'in'": {
+        "name": "'in'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'is'": {
+        "name": "'is'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'it'": {
+        "name": "'it'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'last": {
+        "name": "'last",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'last_accessed'": {
+        "name": "'last_accessed'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'mentioned_in'": {
+        "name": "'mentioned_in'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'my'": {
+        "name": "'my'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'name'": {
+        "name": "'name'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'of'": {
+        "name": "'of'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'on'": {
+        "name": "'on'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'processed_input'": {
+        "name": "'processed_input'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'relevance_score'": {
+        "name": "'relevance_score'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'that'": {
+        "name": "'that'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'the'": {
+        "name": "'the'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'timestamp'": {
+        "name": "'timestamp'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'to'];": {
+        "name": "'to'];",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'type'": {
+        "name": "'type'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'used_interaction_ids'": {
+        "name": "'used_interaction_ids'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'user_input_raw'": {
+        "name": "'user_input_raw'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'we'": {
+        "name": "'we'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'were'": {
+        "name": "'were'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'what'": {
+        "name": "'what'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'yesterday'": {
+        "name": "'yesterday'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'{$memory['ai_output']}'": {
+        "name": "'{$memory['ai_output']}'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "'{$memory['user_input_raw']}'": {
+        "name": "'{$memory['user_input_raw']}'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "($inputentities": {
+        "name": "($inputentities",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "($keywords": {
+        "name": "($keywords",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "($relevantmemories": {
+        "name": "($relevantmemories",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "($this->interactions": {
+        "name": "($this->interactions",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "($tokencount": {
+        "name": "($tokencount",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "($uniqueinteractionids": {
+        "name": "($uniqueinteractionids",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "($usedinteractionids": {
+        "name": "($usedinteractionids",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "(count($this->interactions)": {
+        "name": "(count($this->interactions)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "(empty($relevantmemories))": {
+        "name": "(empty($relevantmemories))",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "(isset($this->entities[$entitykey]))": {
+        "name": "(isset($this->entities[$entitykey]))",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "(isset($this->interactions[$id]))": {
+        "name": "(isset($this->interactions[$id]))",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "**2017**": {
+        "name": "**2017**",
         "type": "Concept",
         "description": "",
         "access_count": 4,
         "relevance_score": 2.5,
         "mentioned_in": [
+            "int_68e913adee9762.78158066",
+            "int_68e913c7104806.48613098",
+            "int_68e9140849cd77.93796273",
+            "int_68e9143d4067a7.32049590"
+        ]
+    },
+    "**\\n\"": {
+        "name": "**\\n\"",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "**analyze": {
+        "name": "**analyze",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "**calculate": {
+        "name": "**calculate",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "**ground": {
+        "name": "**ground",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "*blade": {
+        "name": "*blade",
+        "type": "Concept",
+        "description": "",
+        "access_count": 4,
+        "relevance_score": 2.5,
+        "mentioned_in": [
+            "int_68e913adee9762.78158066",
+            "int_68e913c7104806.48613098",
+            "int_68e9140849cd77.93796273",
+            "int_68e9143d4067a7.32049590"
+        ]
+    },
+    "0775": {
+        "name": "0775",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "2049": {
+        "name": "2049",
+        "type": "Concept",
+        "description": "",
+        "access_count": 9,
+        "relevance_score": 5,
+        "mentioned_in": [
+            "int_68e91330146de5.11869429",
+            "int_68e913906a9333.64772653",
+            "int_68e91399378e55.18449048",
+            "int_68e91645e59a93.64273056",
+            "int_68e9172d150c09.22620112",
+            "int_68e9195f202ae0.46305635",
+            "int_68e9196fcbe506.47090894",
+            "int_68e919cc423a36.67420346",
+            "int_68e91a1963fa54.87160079"
+        ]
+    },
+    "2049*": {
+        "name": "2049*",
+        "type": "Concept",
+        "description": "",
+        "access_count": 4,
+        "relevance_score": 2.5,
+        "mentioned_in": [
+            "int_68e913adee9762.78158066",
+            "int_68e913c7104806.48613098",
+            "int_68e9140849cd77.93796273",
+            "int_68e9143d4067a7.32049590"
+        ]
+    },
+    "@return": {
+        "name": "@return",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "[$interactionid]": {
+        "name": "[$interactionid]",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "['a'": {
+        "name": "['a'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "['context'": {
+        "name": "['context'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "['keywords'": {
+        "name": "['keywords'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "\\n\";": {
+        "name": "\\n\";",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "\\n\\n\"": {
+        "name": "\\n\\n\"",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "]+\/'": {
+        "name": "]+\/'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "__construct()": {
+        "name": "__construct()",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "`[on": {
+        "name": "`[on",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "`current_time`": {
+        "name": "`current_time`",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "`recalled_context`": {
+        "name": "`recalled_context`",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "about": {
+        "name": "about",
+        "type": "Concept",
+        "description": "",
+        "access_count": 10,
+        "relevance_score": 5.5,
+        "mentioned_in": [
             "int_68e8f57d872d28.99336244",
             "int_68e8f5de830cf6.00384132",
             "int_68e8fbe3a6ffb6.99126138",
-            "int_68e90a36a8faa0.34569817"
+            "int_68e90a36a8faa0.34569817",
+            "int_68e9134f145b95.33710695",
+            "int_68e913906a9333.64772653",
+            "int_68e91399378e55.18449048",
+            "int_68e913adee9762.78158066",
+            "int_68e916d91e8e62.27990100",
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "access": {
+        "name": "access",
+        "type": "Concept",
+        "description": "",
+        "access_count": 3,
+        "relevance_score": 2,
+        "mentioned_in": [
+            "int_68e913adee9762.78158066",
+            "int_68e91454c0dc58.69680445",
+            "int_68e9146b44b945.36999673"
+        ]
+    },
+    "accurately": {
+        "name": "accurately",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "advanced": {
+        "name": "advanced",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
         ]
     },
     "again": {
@@ -22,6 +1412,26 @@
             "int_68e90ecd95aca4.92514926"
         ]
     },
+    "against": {
+        "name": "against",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "ago')": {
+        "name": "ago')",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
     "ai's": {
         "name": "ai's",
         "type": "Concept",
@@ -32,14 +1442,45 @@
             "int_68e8f4f515b131.58660668"
         ]
     },
-    "anything": {
-        "name": "anything",
+    "analyze": {
+        "name": "analyze",
         "type": "Concept",
         "description": "",
         "access_count": 1,
         "relevance_score": 1,
         "mentioned_in": [
-            "int_68e8f5de830cf6.00384132"
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "answer": {
+        "name": "answer",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "answers:**": {
+        "name": "answers:**",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "anything": {
+        "name": "anything",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e8f5de830cf6.00384132",
+            "int_68e910928f02c2.13019385"
         ]
     },
     "appears": {
@@ -52,6 +1493,106 @@
             "int_68e8f4f515b131.58660668"
         ]
     },
+    "approximated": {
+        "name": "approximated",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91acf71ed94.80439731"
+        ]
+    },
+    "array": {
+        "name": "array",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "array]": {
+        "name": "array]",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "array_filter(array_unique($words)": {
+        "name": "array_filter(array_unique($words)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "array_merge($relevantinteractionids": {
+        "name": "array_merge($relevantinteractionids",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "array_slice($this->interactions": {
+        "name": "array_slice($this->interactions",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "array_unique($relevantinteractionids);": {
+        "name": "array_unique($relevantinteractionids);",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "artificial": {
+        "name": "artificial",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "aware": {
+        "name": "aware",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "base": {
+        "name": "base",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
     "based": {
         "name": "based",
         "type": "Concept",
@@ -62,6 +1603,36 @@
             "int_68e8f4f515b131.58660668"
         ]
     },
+    "bettter": {
+        "name": "bettter",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e910e70217c6.68979633"
+        ]
+    },
+    "blade": {
+        "name": "blade",
+        "type": "Concept",
+        "description": "",
+        "access_count": 11,
+        "relevance_score": 6,
+        "mentioned_in": [
+            "int_68e912bce710d0.23853828",
+            "int_68e912d97f97c5.30323269",
+            "int_68e91330146de5.11869429",
+            "int_68e913906a9333.64772653",
+            "int_68e91399378e55.18449048",
+            "int_68e91645e59a93.64273056",
+            "int_68e9172d150c09.22620112",
+            "int_68e9195f202ae0.46305635",
+            "int_68e9196fcbe506.47090894",
+            "int_68e919cc423a36.67420346",
+            "int_68e91a1963fa54.87160079"
+        ]
+    },
     "book": {
         "name": "book",
         "type": "Concept",
@@ -70,6 +1641,46 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8fdaed092c1.74882220"
+        ]
+    },
+    "break;": {
+        "name": "break;",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "browse": {
+        "name": "browse",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91f7385fa03.15189777"
+        ]
+    },
+    "calculating": {
+        "name": "calculating",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "character": {
+        "name": "character",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
         ]
     },
     "cities": {
@@ -83,14 +1694,188 @@
             "int_68e90e658c5a43.97174842"
         ]
     },
-    "current": {
-        "name": "current",
+    "class": {
+        "name": "class",
         "type": "Concept",
         "description": "",
         "access_count": 1,
         "relevance_score": 1,
         "mentioned_in": [
-            "int_68e8fe87a0b404.66831681"
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "code": {
+        "name": "code",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "com\/": {
+        "name": "com\/",
+        "type": "Concept",
+        "description": "",
+        "access_count": 4,
+        "relevance_score": 2.5,
+        "mentioned_in": [
+            "int_68e91b16c37090.78431886",
+            "int_68e91b4136a1c1.61821674",
+            "int_68e91b617747e4.76536361",
+            "int_68e91b94bca174.40479807"
+        ]
+    },
+    "com\/'": {
+        "name": "com\/'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 3,
+        "relevance_score": 2,
+        "mentioned_in": [
+            "int_68e91ece1e6501.07404799",
+            "int_68e91ef169da30.68892272",
+            "int_68e91f2b16fc86.51535052"
+        ]
+    },
+    "com\/en-us\/": {
+        "name": "com\/en-us\/",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91f57074699.89790092"
+        ]
+    },
+    "com\/en-us\/\"": {
+        "name": "com\/en-us\/\"",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91f7385fa03.15189777"
+        ]
+    },
+    "com\/title\/tt1856101\/\"": {
+        "name": "com\/title\/tt1856101\/\"",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9168ee687f6.65735400"
+        ]
+    },
+    "com\/title\/tt1856101\/'": {
+        "name": "com\/title\/tt1856101\/'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e9140849cd77.93796273",
+            "int_68e9143d4067a7.32049590"
+        ]
+    },
+    "companion": {
+        "name": "companion",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "config": {
+        "name": "config",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
+    "content": {
+        "name": "content",
+        "type": "Concept",
+        "description": "",
+        "access_count": 7,
+        "relevance_score": 4,
+        "mentioned_in": [
+            "int_68e91454c0dc58.69680445",
+            "int_68e9146b44b945.36999673",
+            "int_68e91b617747e4.76536361",
+            "int_68e91b94bca174.40479807",
+            "int_68e91ece1e6501.07404799",
+            "int_68e91ef169da30.68892272",
+            "int_68e91f7385fa03.15189777"
+        ]
+    },
+    "context": {
+        "name": "context",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "context_token_budget)": {
+        "name": "context_token_budget)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "core": {
+        "name": "core",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "count($this->interactions)": {
+        "name": "count($this->interactions)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "creates": {
+        "name": "creates",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "current": {
+        "name": "current",
+        "type": "Concept",
+        "description": "",
+        "access_count": 3,
+        "relevance_score": 2,
+        "mentioned_in": [
+            "int_68e8fe87a0b404.66831681",
+            "int_68e90ff292efc6.24084158",
+            "int_68e9103cd28995.95912320"
         ]
     },
     "data": {
@@ -103,6 +1888,16 @@
             "int_68e8f4f515b131.58660668"
         ]
     },
+    "data\/": {
+        "name": "data\/",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
     "date": {
         "name": "date",
         "type": "Concept",
@@ -111,6 +1906,36 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8fa472b2ea9.43995076"
+        ]
+    },
+    "date('c')": {
+        "name": "date('c')",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "date('c');": {
+        "name": "date('c');",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "date('y-m-d": {
+        "name": "date('y-m-d",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "days": {
@@ -123,6 +1948,67 @@
             "int_68e8fdaed092c1.74882220"
         ]
     },
+    "decay_score": {
+        "name": "decay_score",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "decay_score;": {
+        "name": "decay_score;",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "direct": {
+        "name": "direct",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "directive:": {
+        "name": "directive:",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "directory": {
+        "name": "directory",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e90ff292efc6.24084158",
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "does": {
+        "name": "does",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9168ee687f6.65735400"
+        ]
+    },
     "dont": {
         "name": "dont",
         "type": "Concept",
@@ -131,6 +2017,26 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f6de5d9632.84747007"
+        ]
+    },
+    "earth": {
+        "name": "earth",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91acf71ed94.80439731"
+        ]
+    },
+    "effective": {
+        "name": "effective",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "elaborate": {
@@ -147,20 +2053,62 @@
         "name": "else",
         "type": "Concept",
         "description": "",
-        "access_count": 1,
-        "relevance_score": 1,
+        "access_count": 2,
+        "relevance_score": 1.5,
         "mentioned_in": [
-            "int_68e8f5de830cf6.00384132"
+            "int_68e8f5de830cf6.00384132",
+            "int_68e9103cd28995.95912320"
         ]
     },
     "entities": {
         "name": "entities",
         "type": "Concept",
         "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668",
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
+    "events": {
+        "name": "events",
+        "type": "Concept",
+        "description": "",
         "access_count": 1,
         "relevance_score": 1,
         "mentioned_in": [
-            "int_68e8f4f515b131.58660668"
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "every": {
+        "name": "every",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "expressions": {
+        "name": "expressions",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "extractentities(string": {
+        "name": "extractentities(string",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "fact": {
@@ -183,6 +2131,46 @@
             "int_68e8f4f515b131.58660668"
         ]
     },
+    "file_exists(entities_file)": {
+        "name": "file_exists(entities_file)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "file_exists(interactions_file)": {
+        "name": "file_exists(interactions_file)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "file_put_contents(entities_file": {
+        "name": "file_put_contents(entities_file",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "file_put_contents(interactions_file": {
+        "name": "file_put_contents(interactions_file",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
     "files": {
         "name": "files",
         "type": "Concept",
@@ -191,6 +2179,26 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "film": {
+        "name": "film",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "finds": {
+        "name": "finds",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "flight": {
@@ -202,6 +2210,26 @@
         "mentioned_in": [
             "int_68e8fdaed092c1.74882220",
             "int_68e8fdd2436ae5.60099397"
+        ]
+    },
+    "fn($a": {
+        "name": "fn($a",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "fn($word)": {
+        "name": "fn($word)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "focusing": {
@@ -224,22 +2252,178 @@
             "int_68e8f675aab1c5.08435410"
         ]
     },
-    "from": {
-        "name": "from",
+    "foreach": {
+        "name": "foreach",
         "type": "Concept",
         "description": "",
         "access_count": 1,
         "relevance_score": 1,
         "mentioned_in": [
-            "int_68e8fdaed092c1.74882220"
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "format": {
+        "name": "format",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "formats": {
+        "name": "formats",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "found": {
+        "name": "found",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "friend": {
+        "name": "friend",
+        "type": "Concept",
+        "description": "",
+        "access_count": 3,
+        "relevance_score": 2,
+        "mentioned_in": [
+            "int_68e910e70217c6.68979633",
+            "int_68e91119683b53.07127927",
+            "int_68e91281f11502.50028274"
+        ]
+    },
+    "from": {
+        "name": "from",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e8fdaed092c1.74882220",
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "function": {
+        "name": "function",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "geminiclient": {
+        "name": "geminiclient",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
+    "general": {
+        "name": "general",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e913adee9762.78158066",
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "getrelevantcontext(string": {
+        "name": "getrelevantcontext(string",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "gettimeawaresystemprompt():": {
+        "name": "gettimeawaresystemprompt():",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "girl": {
+        "name": "girl",
+        "type": "Concept",
+        "description": "",
+        "access_count": 3,
+        "relevance_score": 2,
+        "mentioned_in": [
+            "int_68e9172d150c09.22620112",
+            "int_68e91877b2eba5.54957103",
+            "int_68e918d7eaded5.94792551"
+        ]
+    },
+    "girl\"": {
+        "name": "girl\"",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "give": {
+        "name": "give",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e910e70217c6.68979633"
+        ]
+    },
+    "given": {
+        "name": "given",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "h:i:s'": {
+        "name": "h:i:s'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "have": {
         "name": "have",
         "type": "Concept",
         "description": "",
-        "access_count": 7,
-        "relevance_score": 4,
+        "access_count": 8,
+        "relevance_score": 4.5,
         "mentioned_in": [
             "int_68e8f4f515b131.58660668",
             "int_68e8f65e4f5355.97980775",
@@ -247,7 +2431,8 @@
             "int_68e8f6de5d9632.84747007",
             "int_68e8fa472b2ea9.43995076",
             "int_68e8fdd2436ae5.60099397",
-            "int_68e90f6a1b28f4.39637165"
+            "int_68e90f6a1b28f4.39637165",
+            "int_68e9103cd28995.95912320"
         ]
     },
     "hello": {
@@ -264,24 +2449,294 @@
             "int_68e90e658c5a43.97174842"
         ]
     },
-    "interactions": {
-        "name": "interactions",
+    "hh:mm:ss]`": {
+        "name": "hh:mm:ss]`",
         "type": "Concept",
         "description": "",
         "access_count": 1,
         "relevance_score": 1,
         "mentioned_in": [
-            "int_68e8f4f515b131.58660668"
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "holographic": {
+        "name": "holographic",
+        "type": "Concept",
+        "description": "",
+        "access_count": 3,
+        "relevance_score": 2,
+        "mentioned_in": [
+            "int_68e91877b2eba5.54957103",
+            "int_68e918d7eaded5.94792551",
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "hour": {
+        "name": "hour",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "https:\/\/www": {
+        "name": "https:\/\/www",
+        "type": "Concept",
+        "description": "",
+        "access_count": 5,
+        "relevance_score": 3,
+        "mentioned_in": [
+            "int_68e91b16c37090.78431886",
+            "int_68e91b4136a1c1.61821674",
+            "int_68e91b617747e4.76536361",
+            "int_68e91b94bca174.40479807",
+            "int_68e91f57074699.89790092"
+        ]
+    },
+    "human": {
+        "name": "human",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e910e70217c6.68979633"
+        ]
+    },
+    "ignore": {
+        "name": "ignore",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91b94bca174.40479807"
+        ]
+    },
+    "imdb": {
+        "name": "imdb",
+        "type": "Concept",
+        "description": "",
+        "access_count": 3,
+        "relevance_score": 2,
+        "mentioned_in": [
+            "int_68e9140849cd77.93796273",
+            "int_68e9143d4067a7.32049590",
+            "int_68e9168ee687f6.65735400"
+        ]
+    },
+    "improvement": {
+        "name": "improvement",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "improvement:": {
+        "name": "improvement:",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "in_array($interactionid": {
+        "name": "in_array($interactionid",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "in_array($word": {
+        "name": "in_array($word",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "index": {
+        "name": "index",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
+    "information": {
+        "name": "information",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "initial_score": {
+        "name": "initial_score",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "instruction": {
+        "name": "instruction",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "intelligence": {
+        "name": "intelligence",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "interactions": {
+        "name": "interactions",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668",
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
+    "interest": {
+        "name": "interest",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "interesting": {
+        "name": "interesting",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e910928f02c2.13019385"
+        ]
+    },
+    "interpret": {
+        "name": "interpret",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "is_dir(data_dir))": {
+        "name": "is_dir(data_dir))",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "json": {
         "name": "json",
         "type": "Concept",
         "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668",
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
+    "json\"": {
+        "name": "json\"",
+        "type": "Concept",
+        "description": "",
         "access_count": 1,
         "relevance_score": 1,
         "mentioned_in": [
-            "int_68e8f4f515b131.58660668"
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
+    "json_decode(file_get_contents(entities_file)": {
+        "name": "json_decode(file_get_contents(entities_file)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "json_decode(file_get_contents(interactions_file)": {
+        "name": "json_decode(file_get_contents(interactions_file)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "json_encode($this->entities": {
+        "name": "json_encode($this->entities",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "json_encode($this->interactions": {
+        "name": "json_encode($this->interactions",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "json_pretty_print));": {
+        "name": "json_pretty_print));",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "kenya": {
@@ -294,14 +2749,140 @@
             "int_68e90c6646fac6.72261118"
         ]
     },
-    "make": {
-        "name": "make",
+    "know": {
+        "name": "know",
+        "type": "Concept",
+        "description": "",
+        "access_count": 10,
+        "relevance_score": 5.5,
+        "mentioned_in": [
+            "int_68e912bce710d0.23853828",
+            "int_68e912d97f97c5.30323269",
+            "int_68e9134f145b95.33710695",
+            "int_68e913906a9333.64772653",
+            "int_68e91399378e55.18449048",
+            "int_68e9172d150c09.22620112",
+            "int_68e9195f202ae0.46305635",
+            "int_68e9196fcbe506.47090894",
+            "int_68e919cc423a36.67420346",
+            "int_68e91a1963fa54.87160079"
+        ]
+    },
+    "knowledge": {
+        "name": "knowledge",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e913adee9762.78158066",
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "ksort($this->entities);": {
+        "name": "ksort($this->entities);",
         "type": "Concept",
         "description": "",
         "access_count": 1,
         "relevance_score": 1,
         "mentioned_in": [
-            "int_68e8fe87a0b404.66831681"
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "ksort($this->interactions);": {
+        "name": "ksort($this->interactions);",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "learn": {
+        "name": "learn",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e910e70217c6.68979633"
+        ]
+    },
+    "likely": {
+        "name": "likely",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "link": {
+        "name": "link",
+        "type": "Concept",
+        "description": "",
+        "access_count": 6,
+        "relevance_score": 3.5,
+        "mentioned_in": [
+            "int_68e9168ee687f6.65735400",
+            "int_68e916d91e8e62.27990100",
+            "int_68e91b37b51050.85087907",
+            "int_68e91b4136a1c1.61821674",
+            "int_68e91b617747e4.76536361",
+            "int_68e91b94bca174.40479807"
+        ]
+    },
+    "links": {
+        "name": "links",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91ae7bb2ca9.55235634"
+        ]
+    },
+    "loadmemory():": {
+        "name": "loadmemory():",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "look": {
+        "name": "look",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91330146de5.11869429"
+        ]
+    },
+    "make": {
+        "name": "make",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e8fe87a0b404.66831681",
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "manager": {
+        "name": "manager",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "managing": {
@@ -318,20 +2899,22 @@
         "name": "memories",
         "type": "Concept",
         "description": "",
-        "access_count": 1,
-        "relevance_score": 1,
+        "access_count": 2,
+        "relevance_score": 1.5,
         "mentioned_in": [
-            "int_68e8f4f515b131.58660668"
+            "int_68e8f4f515b131.58660668",
+            "int_68e9103cd28995.95912320"
         ]
     },
     "memory": {
         "name": "memory",
         "type": "Concept",
         "description": "",
-        "access_count": 1,
-        "relevance_score": 1,
+        "access_count": 2,
+        "relevance_score": 1.5,
         "mentioned_in": [
-            "int_68e8f4f515b131.58660668"
+            "int_68e8f4f515b131.58660668",
+            "int_68e9103cd28995.95912320"
         ]
     },
     "memory(a": {
@@ -348,11 +2931,60 @@
         "name": "memorymanager",
         "type": "Concept",
         "description": "",
+        "access_count": 4,
+        "relevance_score": 2.5,
+        "mentioned_in": [
+            "int_68e8f4d9b62cb2.63719703",
+            "int_68e8f4f515b131.58660668",
+            "int_68e90ff292efc6.24084158",
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "mkdir(data_dir": {
+        "name": "mkdir(data_dir",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "more": {
+        "name": "more",
+        "type": "Concept",
+        "description": "",
         "access_count": 2,
         "relevance_score": 1.5,
         "mentioned_in": [
-            "int_68e8f4d9b62cb2.63719703",
-            "int_68e8f4f515b131.58660668"
+            "int_68e9103cd28995.95912320",
+            "int_68e910e70217c6.68979633"
+        ]
+    },
+    "most": {
+        "name": "most",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "movie": {
+        "name": "movie",
+        "type": "Concept",
+        "description": "",
+        "access_count": 7,
+        "relevance_score": 4,
+        "mentioned_in": [
+            "int_68e912bce710d0.23853828",
+            "int_68e912d97f97c5.30323269",
+            "int_68e91330146de5.11869429",
+            "int_68e9134f145b95.33710695",
+            "int_68e913906a9333.64772653",
+            "int_68e91399378e55.18449048",
+            "int_68e91a9f2cf5e8.53533484"
         ]
     },
     "need": {
@@ -365,15 +2997,27 @@
             "int_68e8fdaed092c1.74882220"
         ]
     },
+    "nehemiaobati-agi\/": {
+        "name": "nehemiaobati-agi\/",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
     "nemi": {
         "name": "nemi",
         "type": "Concept",
         "description": "",
-        "access_count": 2,
-        "relevance_score": 1.5,
+        "access_count": 4,
+        "relevance_score": 2.5,
         "mentioned_in": [
             "int_68e8fbe3a6ffb6.99126138",
-            "int_68e90f6a1b28f4.39637165"
+            "int_68e90f6a1b28f4.39637165",
+            "int_68e9103cd28995.95912320",
+            "int_68e910928f02c2.13019385"
         ]
     },
     "nemy": {
@@ -384,6 +3028,56 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f6de5d9632.84747007"
+        ]
+    },
+    "nice": {
+        "name": "nice",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91281f11502.50028274"
+        ]
+    },
+    "null": {
+        "name": "null",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "operation:**\\n\"": {
+        "name": "operation:**\\n\"",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "org\/wiki\/blade_runner_2049\"": {
+        "name": "org\/wiki\/blade_runner_2049\"",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e916d91e8e62.27990100"
+        ]
+    },
+    "over": {
+        "name": "over",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e910e70217c6.68979633"
         ]
     },
     "overall": {
@@ -416,6 +3110,16 @@
             "int_68e8f4f515b131.58660668"
         ]
     },
+    "piece": {
+        "name": "piece",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
     "player": {
         "name": "player",
         "type": "Concept",
@@ -424,6 +3128,17 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f675aab1c5.08435410"
+        ]
+    },
+    "playstation": {
+        "name": "playstation",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e91f57074699.89790092",
+            "int_68e91f7385fa03.15189777"
         ]
     },
     "poem": {
@@ -446,18 +3161,51 @@
             "int_68e90f6a1b28f4.39637165"
         ]
     },
+    "prefixed": {
+        "name": "prefixed",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "preg_split('\/[\\s": {
+        "name": "preg_split('\/[\\s",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "private": {
+        "name": "private",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
     "project": {
         "name": "project",
         "type": "Concept",
         "description": "",
-        "access_count": 5,
-        "relevance_score": 3,
+        "access_count": 8,
+        "relevance_score": 4.5,
         "mentioned_in": [
             "int_68e8f4d9b62cb2.63719703",
             "int_68e8f6de5d9632.84747007",
             "int_68e8fbe3a6ffb6.99126138",
             "int_68e8fe87a0b404.66831681",
-            "int_68e90f6a1b28f4.39637165"
+            "int_68e90f6a1b28f4.39637165",
+            "int_68e90ff292efc6.24084158",
+            "int_68e9103cd28995.95912320",
+            "int_68e910928f02c2.13019385"
         ]
     },
     "project_nemi": {
@@ -471,6 +3219,66 @@
             "int_68e8f4f515b131.58660668"
         ]
     },
+    "project_nemi\/": {
+        "name": "project_nemi\/",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
+    "project_nemi_findings": {
+        "name": "project_nemi_findings",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
+    "prompt": {
+        "name": "prompt",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "prompts": {
+        "name": "prompts",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
+    "provided": {
+        "name": "provided",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "prunememory():": {
+        "name": "prunememory():",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
     "pruning": {
         "name": "pruning",
         "type": "Concept",
@@ -479,6 +3287,36 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "pruning_threshold": {
+        "name": "pruning_threshold",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "pruning_threshold)": {
+        "name": "pruning_threshold)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "public": {
+        "name": "public",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "purpose": {
@@ -492,6 +3330,101 @@
             "int_68e8f4f515b131.58660668"
         ]
     },
+    "queries": {
+        "name": "queries",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "read": {
+        "name": "read",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e91b37b51050.85087907",
+            "int_68e91b4136a1c1.61821674"
+        ]
+    },
+    "reasearch": {
+        "name": "reasearch",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91645e59a93.64273056"
+        ]
+    },
+    "recall": {
+        "name": "recall",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e9146b44b945.36999673",
+            "int_68e91b94bca174.40479807"
+        ]
+    },
+    "recalled": {
+        "name": "recalled",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "refers": {
+        "name": "refers",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "regarding": {
+        "name": "regarding",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "relative": {
+        "name": "relative",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "released": {
+        "name": "released",
+        "type": "Concept",
+        "description": "",
+        "access_count": 4,
+        "relevance_score": 2.5,
+        "mentioned_in": [
+            "int_68e913adee9762.78158066",
+            "int_68e913c7104806.48613098",
+            "int_68e9140849cd77.93796273",
+            "int_68e9143d4067a7.32049590"
+        ]
+    },
     "relevance": {
         "name": "relevance",
         "type": "Concept",
@@ -500,6 +3433,16 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "relevant": {
+        "name": "relevant",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "remember": {
@@ -522,6 +3465,38 @@
             "int_68e8f69e81ecd6.29768137"
         ]
     },
+    "research": {
+        "name": "research",
+        "type": "Concept",
+        "description": "",
+        "access_count": 3,
+        "relevance_score": 2,
+        "mentioned_in": [
+            "int_68e913c7104806.48613098",
+            "int_68e9140849cd77.93796273",
+            "int_68e9143d4067a7.32049590"
+        ]
+    },
+    "responded:": {
+        "name": "responded:",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "response": {
+        "name": "response",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e910e70217c6.68979633"
+        ]
+    },
     "responsible": {
         "name": "responsible",
         "type": "Concept",
@@ -540,6 +3515,16 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "return": {
+        "name": "return",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "review": {
@@ -562,14 +3547,69 @@
             "int_68e8f4f515b131.58660668"
         ]
     },
-    "right": {
-        "name": "right",
+    "reward_score;": {
+        "name": "reward_score;",
         "type": "Concept",
         "description": "",
         "access_count": 1,
         "relevance_score": 1,
         "mentioned_in": [
-            "int_68e8f6de5d9632.84747007"
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "right": {
+        "name": "right",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e8f6de5d9632.84747007",
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "rule-based": {
+        "name": "rule-based",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "runner": {
+        "name": "runner",
+        "type": "Concept",
+        "description": "",
+        "access_count": 15,
+        "relevance_score": 8,
+        "mentioned_in": [
+            "int_68e912bce710d0.23853828",
+            "int_68e912d97f97c5.30323269",
+            "int_68e91330146de5.11869429",
+            "int_68e913906a9333.64772653",
+            "int_68e91399378e55.18449048",
+            "int_68e913adee9762.78158066",
+            "int_68e913c7104806.48613098",
+            "int_68e9140849cd77.93796273",
+            "int_68e9143d4067a7.32049590",
+            "int_68e91645e59a93.64273056",
+            "int_68e9172d150c09.22620112",
+            "int_68e9195f202ae0.46305635",
+            "int_68e9196fcbe506.47090894",
+            "int_68e919cc423a36.67420346",
+            "int_68e91a1963fa54.87160079"
+        ]
+    },
+    "said:": {
+        "name": "said:",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "satisfied": {
@@ -580,6 +3620,16 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f6de5d9632.84747007"
+        ]
+    },
+    "savememory():": {
+        "name": "savememory():",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "school": {
@@ -607,6 +3657,28 @@
             "int_68e8f4f515b131.58660668"
         ]
     },
+    "search": {
+        "name": "search",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e91877b2eba5.54957103",
+            "int_68e918d7eaded5.94792551"
+        ]
+    },
+    "share": {
+        "name": "share",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e91ece1e6501.07404799",
+            "int_68e91ef169da30.68892272"
+        ]
+    },
     "shool": {
         "name": "shool",
         "type": "Concept",
@@ -615,6 +3687,16 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e9071c31d0a2.60760077"
+        ]
+    },
+    "silas": {
+        "name": "silas",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91281f11502.50028274"
         ]
     },
     "sorry": {
@@ -637,6 +3719,47 @@
             "int_68e90f6a1b28f4.39637165"
         ]
     },
+    "specific": {
+        "name": "specific",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "start": {
+        "name": "start",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e9140849cd77.93796273",
+            "int_68e9143d4067a7.32049590"
+        ]
+    },
+    "state": {
+        "name": "state",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "statements": {
+        "name": "statements",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
     "storing": {
         "name": "storing",
         "type": "Concept",
@@ -651,44 +3774,152 @@
         "name": "story",
         "type": "Concept",
         "description": "",
+        "access_count": 5,
+        "relevance_score": 3,
+        "mentioned_in": [
+            "int_68e90a36a8faa0.34569817",
+            "int_68e91119683b53.07127927",
+            "int_68e91281f11502.50028274",
+            "int_68e91877b2eba5.54957103",
+            "int_68e918d7eaded5.94792551"
+        ]
+    },
+    "str_word_count($memorytext);": {
+        "name": "str_word_count($memorytext);",
+        "type": "Concept",
+        "description": "",
         "access_count": 1,
         "relevance_score": 1,
         "mentioned_in": [
-            "int_68e90a36a8faa0.34569817"
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "string": {
+        "name": "string",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "strlen($word)": {
+        "name": "strlen($word)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "strtolower($keyword);": {
+        "name": "strtolower($keyword);",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "strtolower($text);": {
+        "name": "strtolower($text);",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "strtotime($memory['timestamp']));": {
+        "name": "strtotime($memory['timestamp']));",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "structure": {
         "name": "structure",
         "type": "Concept",
         "description": "",
-        "access_count": 2,
-        "relevance_score": 1.5,
+        "access_count": 4,
+        "relevance_score": 2.5,
         "mentioned_in": [
             "int_68e8f4d9b62cb2.63719703",
-            "int_68e8f4f515b131.58660668"
+            "int_68e8f4f515b131.58660668",
+            "int_68e90ff292efc6.24084158",
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "structure:": {
+        "name": "structure:",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
+    "structured": {
+        "name": "structured",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "suggests": {
+        "name": "suggests",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
         ]
     },
     "system": {
         "name": "system",
         "type": "Concept",
         "description": "",
-        "access_count": 1,
-        "relevance_score": 1,
+        "access_count": 2,
+        "relevance_score": 1.5,
         "mentioned_in": [
-            "int_68e8f4f515b131.58660668"
+            "int_68e8f4f515b131.58660668",
+            "int_68e9103cd28995.95912320"
         ]
     },
     "tell": {
         "name": "tell",
         "type": "Concept",
         "description": "",
-        "access_count": 4,
-        "relevance_score": 2.5,
+        "access_count": 5,
+        "relevance_score": 3,
         "mentioned_in": [
             "int_68e8f57d872d28.99336244",
             "int_68e90b878d3b53.84523418",
             "int_68e90c6646fac6.72261118",
-            "int_68e90e658c5a43.97174842"
+            "int_68e90e658c5a43.97174842",
+            "int_68e91119683b53.07127927"
+        ]
+    },
+    "temporal": {
+        "name": "temporal",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
         ]
     },
     "thank": {
@@ -701,6 +3932,26 @@
             "int_68e8fe5d1e9342.02946597"
         ]
     },
+    "thats": {
+        "name": "thats",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "them": {
+        "name": "them",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
     "theory": {
         "name": "theory",
         "type": "Concept",
@@ -711,14 +3962,28 @@
             "int_68e90f6a1b28f4.39637165"
         ]
     },
-    "this": {
-        "name": "this",
+    "there": {
+        "name": "there",
         "type": "Concept",
         "description": "",
         "access_count": 1,
         "relevance_score": 1,
         "mentioned_in": [
-            "int_68e8f4f515b131.58660668"
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "this": {
+        "name": "this",
+        "type": "Concept",
+        "description": "",
+        "access_count": 5,
+        "relevance_score": 3,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668",
+            "int_68e9103cd28995.95912320",
+            "int_68e916d91e8e62.27990100",
+            "int_68e91a9f2cf5e8.53533484",
+            "int_68e91b94bca174.40479807"
         ]
     },
     "three": {
@@ -731,6 +3996,77 @@
             "int_68e8fdaed092c1.74882220"
         ]
     },
+    "time": {
+        "name": "time",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320",
+            "int_68e910e70217c6.68979633"
+        ]
+    },
+    "time-aware": {
+        "name": "time-aware",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "time-related": {
+        "name": "time-related",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "time:**": {
+        "name": "time:**",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "timestamp": {
+        "name": "timestamp",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "timestamps": {
+        "name": "timestamps",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "timestamps:**": {
+        "name": "timestamps:**",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
     "tommorrow": {
         "name": "tommorrow",
         "type": "Concept",
@@ -739,6 +4075,16 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f65e4f5355.97980775"
+        ]
+    },
+    "tools": {
+        "name": "tools",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91281f11502.50028274"
         ]
     },
     "training": {
@@ -761,6 +4107,56 @@
             "int_68e8fe87a0b404.66831681"
         ]
     },
+    "true)": {
+        "name": "true)",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "true);": {
+        "name": "true);",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "tuesday": {
+        "name": "tuesday",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91281f11502.50028274"
+        ]
+    },
+    "uasort($relevantmemories": {
+        "name": "uasort($relevantmemories",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "uasort($this->interactions": {
+        "name": "uasort($this->interactions",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
     "uganda": {
         "name": "uganda",
         "type": "Concept",
@@ -771,6 +4167,46 @@
             "int_68e90e658c5a43.97174842"
         ]
     },
+    "uniqid('int_'": {
+        "name": "uniqid('int_'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "updateentitiesfrominteraction(array": {
+        "name": "updateentitiesfrominteraction(array",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "updatememory(string": {
+        "name": "updatememory(string",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "user": {
+        "name": "user",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
     "using": {
         "name": "using",
         "type": "Concept",
@@ -779,6 +4215,59 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "view": {
+        "name": "view",
+        "type": "Concept",
+        "description": "",
+        "access_count": 4,
+        "relevance_score": 2.5,
+        "mentioned_in": [
+            "int_68e91ae7bb2ca9.55235634",
+            "int_68e91b617747e4.76536361",
+            "int_68e91b94bca174.40479807",
+            "int_68e91ef169da30.68892272"
+        ]
+    },
+    "void": {
+        "name": "void",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "volume": {
+        "name": "volume",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91acf71ed94.80439731"
+        ]
+    },
+    "week'": {
+        "name": "week'",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "whats": {
+        "name": "whats",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e91f2b16fc86.51535052"
         ]
     },
     "when": {
@@ -800,20 +4289,58 @@
         "name": "which",
         "type": "Concept",
         "description": "",
+        "access_count": 5,
+        "relevance_score": 3,
+        "mentioned_in": [
+            "int_68e8fa472b2ea9.43995076",
+            "int_68e913adee9762.78158066",
+            "int_68e913c7104806.48613098",
+            "int_68e9140849cd77.93796273",
+            "int_68e9143d4067a7.32049590"
+        ]
+    },
+    "wikipedia": {
+        "name": "wikipedia",
+        "type": "Concept",
+        "description": "",
         "access_count": 1,
         "relevance_score": 1,
         "mentioned_in": [
-            "int_68e8fa472b2ea9.43995076"
+            "int_68e916d91e8e62.27990100"
+        ]
+    },
+    "will": {
+        "name": "will",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320",
+            "int_68e910e70217c6.68979633"
         ]
     },
     "with": {
         "name": "with",
         "type": "Concept",
         "description": "",
+        "access_count": 4,
+        "relevance_score": 2.5,
+        "mentioned_in": [
+            "int_68e8f6de5d9632.84747007",
+            "int_68e9103cd28995.95912320",
+            "int_68e9140849cd77.93796273",
+            "int_68e9143d4067a7.32049590"
+        ]
+    },
+    "without": {
+        "name": "without",
+        "type": "Concept",
+        "description": "",
         "access_count": 1,
         "relevance_score": 1,
         "mentioned_in": [
-            "int_68e8f6de5d9632.84747007"
+            "int_68e9146b44b945.36999673"
         ]
     },
     "working": {
@@ -835,6 +4362,57 @@
         "mentioned_in": [
             "int_68e909fcf35df3.24088738",
             "int_68e90a36a8faa0.34569817"
+        ]
+    },
+    "your": {
+        "name": "your",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320",
+            "int_68e91a9f2cf5e8.53533484"
+        ]
+    },
+    "yyyy-mm-dd": {
+        "name": "yyyy-mm-dd",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "{$timestamp}]": {
+        "name": "{$timestamp}]",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9103cd28995.95912320"
+        ]
+    },
+    "\u2514\u2500\u2500": {
+        "name": "\u2514\u2500\u2500",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ff292efc6.24084158"
+        ]
+    },
+    "\u251c\u2500\u2500": {
+        "name": "\u251c\u2500\u2500",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ff292efc6.24084158"
         ]
     }
 }
