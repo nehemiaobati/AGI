@@ -34,10 +34,24 @@ class MemoryManager
         $stopWords = ['a', 'an', 'the', 'is', 'in', 'it', 'of', 'for', 'on', 'what', 'were', 'my', 'that', 'we', 'to'];
         return array_filter(array_unique($words), fn($word) => !in_array($word, $stopWords) && strlen($word) > 3);
     }
-    
-    // --- FUNCTION HAS BEEN UPGRADED ---
+
     /**
-     * Finds the most relevant memories using the ENTITY INDEX for high efficiency.
+     * Creates a direct, rule-based system prompt to make the AI aware of time.
+     * This structured format is more effective for LLM instruction.
+     * @return string
+     */
+    public function getTimeAwareSystemPrompt(): string
+    {
+        return
+            "**PRIMARY DIRECTIVE: YOU ARE A TIME-AWARE .**\n" .
+            "Your core function is to analyze and use temporal information to answer user queries accurately.\n\n" .
+            "**RULES OF OPERATION:**\n" .
+            "1.  **ANALYZE TIMESTAMPS:** You will be given a `CURRENT_TIME` and `RECALLED_CONTEXT`. Every piece of context is prefixed with a timestamp `[On YYYY-MM-DD HH:MM:SS]`.\n" .
+            "2.  **CALCULATE RELATIVE TIME:** Interpret all relative time expressions (e.g., 'yesterday', 'last week', 'an hour ago') by calculating them against the `CURRENT_TIME` you are provided.\n" .
+            "3.  **GROUND YOUR ANSWERS:** Base all time-related statements on the timestamps from the recalled context. If there is no relevant temporal information, state that you do not have a memory of events at that time.";
+    }
+    /**
+     * Finds the most relevant memories and formats them with timestamps.
      * @return array ['context' => string, 'used_interaction_ids' => array]
      */
     public function getRelevantContext(string $userInput): array
@@ -45,17 +59,14 @@ class MemoryManager
         $inputEntities = $this->extractEntities($userInput);
         $relevantInteractionIds = [];
 
-        // Step 1: Use the entity index to find all relevant interaction IDs
         foreach ($inputEntities as $entityKey) {
             if (isset($this->entities[$entityKey])) {
                 $relevantInteractionIds = array_merge($relevantInteractionIds, $this->entities[$entityKey]['mentioned_in']);
             }
         }
         
-        // Remove duplicate IDs
         $uniqueInteractionIds = array_unique($relevantInteractionIds);
         
-        // Step 2: Retrieve only the interaction data we need
         $relevantMemories = [];
         foreach ($uniqueInteractionIds as $id) {
             if (isset($this->interactions[$id])) {
@@ -63,24 +74,30 @@ class MemoryManager
             }
         }
 
-        // Step 3: Sort the selected memories by relevance score
         uasort($relevantMemories, fn($a, $b) => $b['relevance_score'] <=> $a['relevance_score']);
 
-        // Step 4: Build the context string (same as before)
         $context = '';
         $tokenCount = 0;
         $usedInteractionIds = [];
         
-        foreach ($relevantMemories as $id => $memory) {
-            $memoryText = "Previously, user said: '{$memory['user_input_raw']}'. The AI responded: '{$memory['ai_output']}'. ";
-            $memoryTokenCount = str_word_count($memoryText);
+        if (empty($relevantMemories)) {
+            $context = "No relevant memories found.\n";
+        } else {
+            foreach ($relevantMemories as $id => $memory) {
+                // --- IMPROVEMENT: Add timestamp to the context ---
+                $timestamp = date('Y-m-d H:i:s', strtotime($memory['timestamp']));
+                $memoryText = "[On {$timestamp}] User said: '{$memory['user_input_raw']}'. You responded: '{$memory['ai_output']}'.\n";
+                // --- END IMPROVEMENT ---
+                
+                $memoryTokenCount = str_word_count($memoryText);
 
-            if ($tokenCount + $memoryTokenCount <= CONTEXT_TOKEN_BUDGET) {
-                $context .= $memoryText;
-                $tokenCount += $memoryTokenCount;
-                $usedInteractionIds[] = $id;
-            } else {
-                break;
+                if ($tokenCount + $memoryTokenCount <= CONTEXT_TOKEN_BUDGET) {
+                    $context .= $memoryText;
+                    $tokenCount += $memoryTokenCount;
+                    $usedInteractionIds[] = $id;
+                } else {
+                    break;
+                }
             }
         }
 
@@ -89,8 +106,7 @@ class MemoryManager
             'used_interaction_ids' => $usedInteractionIds
         ];
     }
-    // --- END UPGRADED FUNCTION ---
-
+    
     public function updateMemory(string $userInput, string $aiOutput, array $usedInteractionIds): void
     {
         foreach ($this->interactions as &$interaction) {

@@ -12,8 +12,7 @@ require_once 'GeminiClient.php';
 // --- Main Application Logic ---
 
 // 1. Get user input
-// To run from command line: $userInput = $argv[1] ?? 'Hello?';
-$userInput = $argv[1] ?? 'Hello?';
+$userInput = $argv[1] ?? 'What did we talk about yesterday?';
 
 echo "=================================================\n";
 echo "PROJECT NEMI - DYNAMIC MEMORY AI\n";
@@ -30,11 +29,17 @@ $context = $recalled['context'];
 
 echo "-------------------------------------------------\n";
 echo "Recalled Context (for AI):\n";
-echo empty($context) ? "No relevant memories found.\n" : $context . "\n";
+echo empty($context) ? "No relevant memories found.\n" : $context;
 echo "-------------------------------------------------\n\n";
 
-// 4. Construct the final prompt for the AI
-$finalPrompt = "Based on the following past conversations as context:\n---CONTEXT---\n{$context}\n---END CONTEXT---\n\nNow, answer this new question from the user:\n\"{$userInput}\"";
+// 4. Construct the time-aware final prompt for the AI
+$systemPrompt = $memory->getTimeAwareSystemPrompt();
+$currentTime = "The current date and time is: " . date('Y-m-d H:i:s T');
+
+$finalPrompt = $systemPrompt . "\n\n" .
+               "---RECALLED CONTEXT---\n" . $context . "\n---END CONTEXT---\n\n" .
+               $currentTime . "\n\n" .
+               "Now, answer this new question from the user:\n\"" . $userInput . "\"";
 
 // 5. Generate a response from the AI
 echo "AI is thinking...\n\n";
