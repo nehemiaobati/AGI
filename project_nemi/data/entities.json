@@ -3,12 +3,23 @@
         "name": "about",
         "type": "Concept",
         "description": "",
-        "access_count": 3,
-        "relevance_score": 2,
+        "access_count": 4,
+        "relevance_score": 2.5,
         "mentioned_in": [
             "int_68e8f57d872d28.99336244",
             "int_68e8f5de830cf6.00384132",
-            "int_68e8fbe3a6ffb6.99126138"
+            "int_68e8fbe3a6ffb6.99126138",
+            "int_68e90a36a8faa0.34569817"
+        ]
+    },
+    "again": {
+        "name": "again",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ecd95aca4.92514926"
         ]
     },
     "ai's": {
@@ -59,6 +70,17 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8fdaed092c1.74882220"
+        ]
+    },
+    "cities": {
+        "name": "cities",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e90c6646fac6.72261118",
+            "int_68e90e658c5a43.97174842"
         ]
     },
     "current": {
@@ -141,6 +163,16 @@
             "int_68e8f4f515b131.58660668"
         ]
     },
+    "fact": {
+        "name": "fact",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90b878d3b53.84523418"
+        ]
+    },
     "file": {
         "name": "file",
         "type": "Concept",
@@ -206,26 +238,30 @@
         "name": "have",
         "type": "Concept",
         "description": "",
-        "access_count": 6,
-        "relevance_score": 3.5,
+        "access_count": 7,
+        "relevance_score": 4,
         "mentioned_in": [
             "int_68e8f4f515b131.58660668",
             "int_68e8f65e4f5355.97980775",
             "int_68e8f69e81ecd6.29768137",
             "int_68e8f6de5d9632.84747007",
             "int_68e8fa472b2ea9.43995076",
-            "int_68e8fdd2436ae5.60099397"
+            "int_68e8fdd2436ae5.60099397",
+            "int_68e90f6a1b28f4.39637165"
         ]
     },
     "hello": {
         "name": "hello",
         "type": "Concept",
         "description": "",
-        "access_count": 2,
-        "relevance_score": 1.5,
+        "access_count": 5,
+        "relevance_score": 3,
         "mentioned_in": [
             "int_68e904cd865f32.27972491",
-            "int_68e90703731855.85118943"
+            "int_68e90703731855.85118943",
+            "int_68e90b878d3b53.84523418",
+            "int_68e90c6646fac6.72261118",
+            "int_68e90e658c5a43.97174842"
         ]
     },
     "interactions": {
@@ -246,6 +282,16 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "kenya": {
+        "name": "kenya",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90c6646fac6.72261118"
         ]
     },
     "make": {
@@ -288,6 +334,16 @@
             "int_68e8f4f515b131.58660668"
         ]
     },
+    "memory(a": {
+        "name": "memory(a",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90f6a1b28f4.39637165"
+        ]
+    },
     "memorymanager": {
         "name": "memorymanager",
         "type": "Concept",
@@ -313,10 +369,11 @@
         "name": "nemi",
         "type": "Concept",
         "description": "",
-        "access_count": 1,
-        "relevance_score": 1,
+        "access_count": 2,
+        "relevance_score": 1.5,
         "mentioned_in": [
-            "int_68e8fbe3a6ffb6.99126138"
+            "int_68e8fbe3a6ffb6.99126138",
+            "int_68e90f6a1b28f4.39637165"
         ]
     },
     "nemy": {
@@ -369,17 +426,38 @@
             "int_68e8f675aab1c5.08435410"
         ]
     },
+    "poem": {
+        "name": "poem",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e909fcf35df3.24088738"
+        ]
+    },
+    "practical": {
+        "name": "practical",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90f6a1b28f4.39637165"
+        ]
+    },
     "project": {
         "name": "project",
         "type": "Concept",
         "description": "",
-        "access_count": 4,
-        "relevance_score": 2.5,
+        "access_count": 5,
+        "relevance_score": 3,
         "mentioned_in": [
             "int_68e8f4d9b62cb2.63719703",
             "int_68e8f6de5d9632.84747007",
             "int_68e8fbe3a6ffb6.99126138",
-            "int_68e8fe87a0b404.66831681"
+            "int_68e8fe87a0b404.66831681",
+            "int_68e90f6a1b28f4.39637165"
         ]
     },
     "project_nemi": {
@@ -508,14 +586,15 @@
         "name": "school",
         "type": "Concept",
         "description": "",
-        "access_count": 5,
-        "relevance_score": 3,
+        "access_count": 6,
+        "relevance_score": 3.5,
         "mentioned_in": [
             "int_68e8f65e4f5355.97980775",
             "int_68e8f675aab1c5.08435410",
             "int_68e8f69e81ecd6.29768137",
             "int_68e8fa472b2ea9.43995076",
-            "int_68e905411a9a15.99251216"
+            "int_68e905411a9a15.99251216",
+            "int_68e90ecd95aca4.92514926"
         ]
     },
     "scoring": {
@@ -538,6 +617,26 @@
             "int_68e9071c31d0a2.60760077"
         ]
     },
+    "sorry": {
+        "name": "sorry",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90ecd95aca4.92514926"
+        ]
+    },
+    "sorts": {
+        "name": "sorts",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90f6a1b28f4.39637165"
+        ]
+    },
     "storing": {
         "name": "storing",
         "type": "Concept",
@@ -546,6 +645,16 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "story": {
+        "name": "story",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90a36a8faa0.34569817"
         ]
     },
     "structure": {
@@ -573,10 +682,13 @@
         "name": "tell",
         "type": "Concept",
         "description": "",
-        "access_count": 1,
-        "relevance_score": 1,
+        "access_count": 4,
+        "relevance_score": 2.5,
         "mentioned_in": [
-            "int_68e8f57d872d28.99336244"
+            "int_68e8f57d872d28.99336244",
+            "int_68e90b878d3b53.84523418",
+            "int_68e90c6646fac6.72261118",
+            "int_68e90e658c5a43.97174842"
         ]
     },
     "thank": {
@@ -587,6 +699,16 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8fe5d1e9342.02946597"
+        ]
+    },
+    "theory": {
+        "name": "theory",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90f6a1b28f4.39637165"
         ]
     },
     "this": {
@@ -619,6 +741,16 @@
             "int_68e8f65e4f5355.97980775"
         ]
     },
+    "training": {
+        "name": "training",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90f6a1b28f4.39637165"
+        ]
+    },
     "tring": {
         "name": "tring",
         "type": "Concept",
@@ -627,6 +759,16 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8fe87a0b404.66831681"
+        ]
+    },
+    "uganda": {
+        "name": "uganda",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90e658c5a43.97174842"
         ]
     },
     "using": {
@@ -643,14 +785,15 @@
         "name": "when",
         "type": "Concept",
         "description": "",
-        "access_count": 5,
-        "relevance_score": 3,
+        "access_count": 6,
+        "relevance_score": 3.5,
         "mentioned_in": [
             "int_68e8f69e81ecd6.29768137",
             "int_68e8fbe3a6ffb6.99126138",
             "int_68e8fdd2436ae5.60099397",
             "int_68e905411a9a15.99251216",
-            "int_68e9071c31d0a2.60760077"
+            "int_68e9071c31d0a2.60760077",
+            "int_68e90ecd95aca4.92514926"
         ]
     },
     "which": {
@@ -671,6 +814,27 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f6de5d9632.84747007"
+        ]
+    },
+    "working": {
+        "name": "working",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e90f6a1b28f4.39637165"
+        ]
+    },
+    "write": {
+        "name": "write",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e909fcf35df3.24088738",
+            "int_68e90a36a8faa0.34569817"
         ]
     }
 }
