@@ -217,6 +217,17 @@
             "int_68e8fdd2436ae5.60099397"
         ]
     },
+    "hello": {
+        "name": "hello",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e904cd865f32.27972491",
+            "int_68e90703731855.85118943"
+        ]
+    },
     "interactions": {
         "name": "interactions",
         "type": "Concept",
@@ -497,13 +508,14 @@
         "name": "school",
         "type": "Concept",
         "description": "",
-        "access_count": 4,
-        "relevance_score": 2.5,
+        "access_count": 5,
+        "relevance_score": 3,
         "mentioned_in": [
             "int_68e8f65e4f5355.97980775",
             "int_68e8f675aab1c5.08435410",
             "int_68e8f69e81ecd6.29768137",
-            "int_68e8fa472b2ea9.43995076"
+            "int_68e8fa472b2ea9.43995076",
+            "int_68e905411a9a15.99251216"
         ]
     },
     "scoring": {
@@ -514,6 +526,16 @@
         "relevance_score": 1,
         "mentioned_in": [
             "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "shool": {
+        "name": "shool",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e9071c31d0a2.60760077"
         ]
     },
     "storing": {
@@ -621,12 +643,14 @@
         "name": "when",
         "type": "Concept",
         "description": "",
-        "access_count": 3,
-        "relevance_score": 2,
+        "access_count": 5,
+        "relevance_score": 3,
         "mentioned_in": [
             "int_68e8f69e81ecd6.29768137",
             "int_68e8fbe3a6ffb6.99126138",
-            "int_68e8fdd2436ae5.60099397"
+            "int_68e8fdd2436ae5.60099397",
+            "int_68e905411a9a15.99251216",
+            "int_68e9071c31d0a2.60760077"
         ]
     },
     "which": {

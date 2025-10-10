@@ -14,7 +14,7 @@
             }
         },
         "ai_output": "Based on the context provided, **I do not have any prior conversations or documents detailing the project structure or purpose of `project_nemi`, nor any specific information about a file named `MemoryManager.php` within it.**\n\nTo provide a review of `project_nemi` and focus on `MemoryManager.php`, I would need the following information:\n\n1.  **Project Scope\/Purpose:** What is `project_nemi` designed to do? (e.g., Web application, library, specific framework integration).\n2.  **Codebase Structure:** A general overview of the directories and main files.\n3.  **Content of `MemoryManager.php`:** Its class definition, methods, and overall responsibility within the project.\n\n**If you can provide the relevant code snippets or documentation for `project_nemi` and `MemoryManager.php`, I would be happy to review them for you.**",
-        "relevance_score": 2.5500000000000007,
+        "relevance_score": 2.3500000000000014,
         "last_accessed": "2025-10-10T12:39:35+00:00"
     },
     "int_68e8f4f515b131.58660668": {
@@ -56,7 +56,7 @@
             }
         },
         "ai_output": "That is very helpful context regarding `MemoryManager.php`!\n\nBased on your description that `MemoryManager.php` handles **storing, retrieving, scoring relevance, pruning old memories, and persisting data via JSON files**, we can infer a great deal about the likely overall purpose and structure of **project\\_nemi**.\n\nHere is an elaboration on the potential purpose and structure of `project_nemi`:\n\n---\n\n## Inferred Purpose of `project_nemi`\n\nThe presence of a dedicated `MemoryManager` strongly suggests that `project_nemi` is an application that requires **context retention, persistence, and intelligent interaction management.**\n\nLikely purposes include:\n\n1.  **AI\/Chatbot System:** This is the most probable use case. The project is likely an application (perhaps a local LLM interface, an automated agent, or a custom chatbot) where maintaining the conversation history and learning from past interactions is critical for coherence.\n2.  **Stateful Agent\/Automation:** It could be an automation tool or an agent that needs to \"remember\" previous actions, configuration states, or observations made during long-running processes.\n3.  **Knowledge Graph\/Entity Tracking System:** If the relevance scoring is complex, the system might be building a rudimentary, session-based knowledge graph where it tracks important entities and their relationships over time.\n\n**In essence, `project_nemi` is likely designed to be a system that requires short-term and\/or long-term context awareness to function effectively.**\n\n## Inferred Structure of `project_nemi`\n\nIf `MemoryManager.php` is a core component, the rest of the project structure likely revolves around supporting its functions:\n\n### 1. Core Interaction\/Processing Layer (The \"Brain\")\n\nThere must be components that **use** the memory manager. These components would likely be:\n\n*   **Input Processor:** Handles receiving raw user input (text, commands, data).\n*   **Logic\/Agent Controller:** This is the main engine that decides what to do next. It would call `MemoryManager->retrieveContext(input)` before processing, and then call `MemoryManager->storeInteraction(input, output)` afterward.\n*   **Output Generator:** Responsible for formatting the final response, perhaps leveraging the retrieved context.\n\n### 2. Persistence Layer (Supported by `MemoryManager`)\n\nSince the memory is saved to **JSON files**, this implies a relatively simple, file-based persistence model rather than a relational or NoSQL database.\n\n*   **Data Structure:** There are likely other files or directories dedicated to storing these JSON artifacts (e.g., a `\/data` or `\/memory_dumps` directory).\n*   **Serialization:** Other parts of the system must be responsible for serializing data *into* the format expected by `MemoryManager` before storage.\n\n### 3. Utility and Configuration Layers\n\n*   **Configuration Manager:** To define parameters like JSON file paths, memory limits, and the threshold for the relevance scoring system.\n*   **Relevance Scorer Implementation:** While `MemoryManager` *uses* a scoring system, the actual algorithm for scoring relevance (e.g., cosine similarity, keyword density) might reside in its own dedicated utility class or be embedded within the Manager itself.\n\n### Summary of Dependencies\n\nThe `MemoryManager` acts as a central hub connecting the **Input\/Processing Logic** with the **File System Persistence**, making it a crucial abstraction layer for state management within `project_nemi`.",
-        "relevance_score": 3.1500000000000004,
+        "relevance_score": 2.950000000000001,
         "last_accessed": "2025-10-10T12:36:34+00:00"
     },
     "int_68e8f57d872d28.99336244": {
@@ -69,7 +69,7 @@
             }
         },
         "ai_output": "I am a large language model, trained by Google. I don't have personal experiences, feelings, or a physical form. My purpose is to process information, understand language, and respond to your questions and requests to the best of my ability.",
-        "relevance_score": 1.5499999999999996,
+        "relevance_score": 1.3499999999999994,
         "last_accessed": "2025-10-10T12:28:19+00:00"
     },
     "int_68e8f5de830cf6.00384132": {
@@ -83,7 +83,7 @@
             ]
         },
         "ai_output": "That's a fair question! Since I'm an AI, there isn't a lot of \"personal\" information to share in the way a human might.\n\nHere are a few more functional details about me:\n\n*   **My Knowledge Base:** My knowledge comes from the massive dataset I was trained on, which includes text and code from the real world up until my last training update. I don't browse the internet in real-time, so my information might not always reflect the very latest events.\n*   **My Capabilities:** I can generate text, translate languages, write different kinds of creative content, and answer your questions in an informative way.\n*   **My Goal:** My primary function is to be helpful and informative by processing the input you give me and generating relevant, coherent responses.\n\nIs there a specific area you're curious about\u2014like how I handle certain types of tasks or what my limitations are?",
-        "relevance_score": 1.0499999999999996,
+        "relevance_score": 0.8499999999999994,
         "last_accessed": "2025-10-10T12:28:19+00:00"
     },
     "int_68e8f65e4f5355.97980775": {
@@ -97,8 +97,8 @@
             }
         },
         "ai_output": "That is an important piece of information to keep in mind!\n\nGiven that you have school tomorrow, I recommend we focus on any tasks or questions you have related to **project\\_nemi** that are quick to resolve or can be prioritized.\n\nIf you need to pause our detailed technical discussion for now, that's completely understandable. We can certainly pick up the thread later when you have more time.\n\n**How would you like to proceed?**\n\n1.  **Quick Follow-up:** Do you have one final, specific question about the structure or purpose of `project_nemi`?\n2.  **Pause:** Shall we pause the discussion here?\n3.  **Switch Topic:** Do you have a different, more urgent task you need help with?",
-        "relevance_score": 3.3000000000000007,
-        "last_accessed": "2025-10-10T12:36:34+00:00"
+        "relevance_score": 3.6500000000000012,
+        "last_accessed": "2025-10-10T13:08:17+00:00"
     },
     "int_68e8f675aab1c5.08435410": {
         "timestamp": "2025-10-10T12:05:09+00:00",
@@ -111,8 +111,8 @@
             }
         },
         "ai_output": "That's great! Being a student-athlete takes a lot of dedication and time management.\n\nSince you mentioned having school tomorrow and being a football player, it sounds like your schedule might be busy.\n\nConsidering the context of our previous conversation about **project\\_nemi**, would you prefer to:\n\n1.  **Wrap up quickly** on `project_nemi` if you have one last question?\n2.  **Pause our discussion** entirely for now so you can focus on studying or getting ready for practice\/school?\n3.  **Switch to a different topic** that might be more relevant to your immediate needs (like time management tips, maybe)?",
-        "relevance_score": 1.6999999999999997,
-        "last_accessed": "2025-10-10T12:21:27+00:00"
+        "relevance_score": 2.05,
+        "last_accessed": "2025-10-10T13:08:17+00:00"
     },
     "int_68e8f69e81ecd6.29768137": {
         "timestamp": "2025-10-10T12:05:50+00:00",
@@ -126,8 +126,8 @@
             }
         },
         "ai_output": "You mentioned earlier that **you have school tomorrow**.\n\nGiven that you also mentioned being a football player and having school tomorrow, please make sure to get enough rest!\n\nDo you have any final quick questions about **project\\_nemi**, or would you like to pause our discussion now so you can focus on your preparations?",
-        "relevance_score": 2.8500000000000005,
-        "last_accessed": "2025-10-10T12:36:34+00:00"
+        "relevance_score": 3.750000000000001,
+        "last_accessed": "2025-10-10T13:16:12+00:00"
     },
     "int_68e8f6de5d9632.84747007": {
         "timestamp": "2025-10-10T12:06:54+00:00",
@@ -144,7 +144,7 @@
             }
         },
         "ai_output": "That's perfectly fine! I understand that you are satisfied with our current understanding of **project\\_nemi** for now.\n\nSince you have school tomorrow, it's best to wrap up here so you can focus on resting and preparing.\n\nIf you decide later that you want to resume the discussion about `project_nemi` or any other topic, just let me know! Good luck with school tomorrow!",
-        "relevance_score": 2.9000000000000004,
+        "relevance_score": 2.700000000000001,
         "last_accessed": "2025-10-10T12:39:35+00:00"
     },
     "int_68e8fa472b2ea9.43995076": {
@@ -159,8 +159,8 @@
             }
         },
         "ai_output": "Based on our previous exchange:\n\n1.  You stated: **\"[On 2025-10-10 12:04:46] User said: 'i have school tommorrow'.\"**\n2.  The current date and time is **2025-10-10 12:21:18 UTC**.\n\nTherefore, if you have school *tomorrow* relative to today (October 10th), you have school on **2025-10-11**.",
-        "relevance_score": 1.2999999999999998,
-        "last_accessed": "2025-10-10T12:36:34+00:00"
+        "relevance_score": 1.6499999999999997,
+        "last_accessed": "2025-10-10T13:08:17+00:00"
     },
     "int_68e8fbe3a6ffb6.99126138": {
         "timestamp": "2025-10-10T12:28:19+00:00",
@@ -174,8 +174,8 @@
             }
         },
         "ai_output": "Based on the context provided, **I did not ask you about `project_nemi`**.\n\nYou brought up `project_nemi` in the conversation, and I responded to your queries:\n\n1.  At **2025-10-10 11:58:17**, you asked me to review its structure, and I stated I needed more information about it.\n2.  At **2025-10-10 12:06:54**, after you said you were satisfied with the current understanding, I closed the topic.",
-        "relevance_score": 1.9,
-        "last_accessed": "2025-10-10T12:39:35+00:00"
+        "relevance_score": 2.8,
+        "last_accessed": "2025-10-10T13:16:12+00:00"
     },
     "int_68e8fdaed092c1.74882220": {
         "timestamp": "2025-10-10T12:35:58+00:00",
@@ -192,7 +192,7 @@
             }
         },
         "ai_output": "I have noted your request. You need to book a flight three days from now.\n\nCalculating from the **CURRENT\\_TIME** of **2025-10-10 12:35:56 UTC**:\n\nThree days from now will be **2025-10-13 12:35:56 UTC**.\n\nSince the provided **RECALLED CONTEXT** is empty, I have no previous memory or record of this instruction other than this immediate acknowledgment.",
-        "relevance_score": 1.4,
+        "relevance_score": 1.1999999999999997,
         "last_accessed": "2025-10-10T12:36:34+00:00"
     },
     "int_68e8fdd2436ae5.60099397": {
@@ -206,8 +206,8 @@
             }
         },
         "ai_output": "Based on the most recent context where you mentioned booking a flight:\n\nAt **2025-10-10 12:35:58**, you stated: \"remember i need to book a flight **three days from now**\".\n\nCalculating from the time you made that request (**2025-10-10 12:35:56 UTC**, as noted in that context):\n\nYou need to book a flight three days from that point, which calculates to **2025-10-13 12:35:56 UTC**.",
-        "relevance_score": 0.8999999999999999,
-        "last_accessed": "2025-10-10T12:36:34+00:00"
+        "relevance_score": 1.7999999999999998,
+        "last_accessed": "2025-10-10T13:16:12+00:00"
     },
     "int_68e8fe5d1e9342.02946597": {
         "timestamp": "2025-10-10T12:38:53+00:00",
@@ -218,7 +218,7 @@
             ]
         },
         "ai_output": "You're welcome. Is there anything else I can assist you with right now?",
-        "relevance_score": 0.95,
+        "relevance_score": 0.7499999999999998,
         "last_accessed": "2025-10-10T12:38:53+00:00"
     },
     "int_68e8fe87a0b404.66831681": {
@@ -233,7 +233,57 @@
             }
         },
         "ai_output": "That's an ambitious goal! Developing an Artificial General Intelligence (AGI) is a significant undertaking.\n\nWhile I have context regarding your discussions about **`project_nemi`**\u2014specifically a request to review its structure, which occurred on **2025-10-10 11:58:17**\u2014I do not have any specific memory or context regarding how your current project relates to AGI development.\n\nHow can I assist you with your AGI project right now?",
-        "relevance_score": 1,
+        "relevance_score": 0.7999999999999998,
         "last_accessed": "2025-10-10T12:39:35+00:00"
+    },
+    "int_68e904cd865f32.27972491": {
+        "timestamp": "2025-10-10T13:06:21+00:00",
+        "user_input_raw": "hello",
+        "processed_input": {
+            "keywords": [
+                "hello"
+            ]
+        },
+        "ai_output": "Hello! I am a time-aware AI, ready to assist you.\n\nSince the system provided no specific context for recall based on the current time of **2025-10-10 13:06:19 UTC**, how may I help you today?",
+        "relevance_score": 1.4,
+        "last_accessed": "2025-10-10T13:15:47+00:00"
+    },
+    "int_68e905411a9a15.99251216": {
+        "timestamp": "2025-10-10T13:08:17+00:00",
+        "user_input_raw": "when is school",
+        "processed_input": {
+            "keywords": {
+                "0": "when",
+                "2": "school"
+            }
+        },
+        "ai_output": "Based on the conversation history, you mentioned having school tomorrow relative to the time you first stated it.\n\nThe relevant context is:\n*   **[On 2025-10-10 12:04:46]** You said: 'i have school tommorrow'.\n*   **[On 2025-10-10 12:21:27]** I confirmed that if today is **2025-10-10**, then your school day is **2025-10-11**.\n\nTherefore, you have school on **2025-10-11**.",
+        "relevance_score": 1.45,
+        "last_accessed": "2025-10-10T13:16:12+00:00"
+    },
+    "int_68e90703731855.85118943": {
+        "timestamp": "2025-10-10T13:15:47+00:00",
+        "user_input_raw": "hello",
+        "processed_input": {
+            "keywords": [
+                "hello"
+            ]
+        },
+        "ai_output": "Hello! I am a time-aware AI, ready to assist you.\n\nBased on the provided context, the last time you said \"hello\" was **[On 2025-10-10 13:06:21]**.\n\nSince the current time is **2025-10-10 13:15:43 UTC**, that interaction occurred 9 minutes and 22 seconds ago.\n\nHow may I help you now?",
+        "relevance_score": 0.95,
+        "last_accessed": "2025-10-10T13:15:47+00:00"
+    },
+    "int_68e9071c31d0a2.60760077": {
+        "timestamp": "2025-10-10T13:16:12+00:00",
+        "user_input_raw": "when is shool?",
+        "processed_input": {
+            "keywords": {
+                "0": "when",
+                "2": "shool"
+            }
+        },
+        "ai_output": "Based on the most recent context provided:\n\nYou have school on **2025-10-11**.\n\nThis determination was made at **2025-10-10 13:08:17** based on your earlier statements.",
+        "relevance_score": 1,
+        "last_accessed": "2025-10-10T13:16:12+00:00"
     }
 }
