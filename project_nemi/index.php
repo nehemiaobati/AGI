@@ -20,6 +20,19 @@ function runterminalLogic(string $userInput): array
     $memory = new MemoryManager();
     $gemini = new GeminiClient();
 
+    // --- Tool Selection Logic ---
+    // By default, enable Google Search for general knowledge and real-time information.
+    $toolsToUse = ['googleSearch'];
+    
+    // Use a regex to detect if the user input contains a URL.
+    $urlPattern = '/\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i';
+    if (preg_match($urlPattern, $userInput)) {
+        // If a URL is found, add the urlContext tool. This allows the AI to both
+        // read the specific URL's content and search the web if needed.
+        $toolsToUse[] = 'urlContext';
+    }
+    // --- End Tool Selection ---
+
     // Recall relevant memories to build context
     $recalled = $memory->getRelevantContext($userInput);
     $context = $recalled['context'];
@@ -33,8 +46,8 @@ function runterminalLogic(string $userInput): array
                    $currentTime . "\n\n" .
                    "User query: \"" . $userInput . "\"";
 
-    // Generate a response from the AI
-    $aiResponse = $gemini->generateResponse($finalPrompt);
+    // Generate a response from the AI, passing the dynamically selected tools
+    $aiResponse = $gemini->generateResponse($finalPrompt, $toolsToUse);
 
     // Update and save the memory
     $memory->updateMemory($userInput, $aiResponse, $recalled['used_interaction_ids']);
@@ -118,13 +131,13 @@ if (php_sapi_name() === 'cli') {
     <div class="container mt-5">
         <div class="text-center mb-4">
             <h1 class="display-4">Project NEMI</h1>
-            <p class="lead text-muted">A Time-Aware AI with Dynamic Memory</p>
+            <p class="lead text-muted">A Time-Aware AI with Dynamic Memory - Super Fake AGI of Sorts</p>
         </div>
         <div class="card bg-dark">
             <div class="card-body">
                 <form action="index.php" method="post">
                     <div class="mb-3">
-                        <textarea class="form-control" name="prompt" rows="3" placeholder="Ask the AI anything..."><?= htmlspecialchars($userInput) ?></textarea>
+                        <textarea class="form-control" name="prompt" rows="3" placeholder="Ask the AI anything or provide a URL to summarize..."><?= htmlspecialchars($userInput) ?></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Send</button>
                 </form>

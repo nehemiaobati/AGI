@@ -15,5 +15,5 @@ define('ENTITIES_FILE', DATA_DIR . '/entities.json');
 define('REWARD_SCORE', 0.5);      // Score to add to a memory when it's recalled
 define('DECAY_SCORE', 0.05);     // Score to subtract from memories not used
 define('INITIAL_SCORE', 1.0);    // Starting score for a new memory
-define('PRUNING_THRESHOLD', 50); // Max number of interactions before pruning old ones
+define('PRUNING_THRESHOLD', 500); // Max number of interactions before pruning old ones
 define('CONTEXT_TOKEN_BUDGET', 4000); // Max "tokens" (approximated as words) to use for context

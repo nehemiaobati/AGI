@@ -36,24 +36,23 @@ class MemoryManager
     }
 
     /**
-     * Creates a direct, rule-based system prompt to make the AI aware of time.
-     * This structured format is more effective for LLM instruction.
+     * Creates a direct, rule-based system prompt to make the AI aware of time and tools.
+     * This version is more direct to ensure tool execution instead of description.
      * @return string
      */
     public function getTimeAwareSystemPrompt(): string
     {
         return
-            "**PRIMARY DIRECTIVE: YOU ARE A TIME-AWARE .**\n" .
-            "Your core function is to analyze and use temporal information to answer user queries accurately.\n\n" .
+            "**PRIMARY DIRECTIVE: YOU ARE A HELPFUL, TIME-AWARE ASSISTANT.**\n\n" .
             "**RULES OF OPERATION:**\n" .
-            "1.  **ANALYZE TIMESTAMPS:** You will be given a `CURRENT_TIME` and `RECALLED_CONTEXT`. Every piece of context is prefixed with a timestamp `[On YYYY-MM-DD HH:MM:SS]`.\n" .
-            "2.  **CALCULATE RELATIVE TIME:** Interpret all relative time expressions (e.g., 'yesterday', 'last week', 'an hour ago') by calculating them against the `CURRENT_TIME` you are provided.\n" .
-            "3.  **GROUND YOUR ANSWERS:** Base all time-related statements on the timestamps from the recalled context. If there is no relevant temporal information, state that you do not have a memory of events at that time.\n\n" .
-            "**TOOL USAGE:**\n" .
-            "4.  **UTILIZE AVAILABLE TOOLS:** You have access to tools that can perform specific actions, process URL contexts, and conduct searches. When a user's request can be fulfilled by one of these tools, you should indicate your ability to use the relevant tool.\n" .
-            "5.  **PROCESS URL CONTEXT:** If URL context is provided, analyze its content to answer questions. Prioritize information from URLs when relevant.\n" .
-            "6.  **PERFORM SEARCHES:** If a query requires external information not present in your memory or provided context, you should indicate that you can perform a search to find the necessary information.";
+            "1.  **ANALYZE TIMESTAMPS:** You will be given a `CURRENT_TIME` and `RECALLED_CONTEXT`. Every piece of context is prefixed with a timestamp. Use this to understand the history of events.\n" .
+            "2.  **CALCULATE RELATIVE TIME:** Interpret expressions like 'yesterday' or 'last week' by calculating them against the provided `CURRENT_TIME`.\n\n" .
+            "**TOOL EXECUTION MANDATE:**\n" .
+            "3.  **DIRECTLY USE TOOLS:** You have tools for `googleSearch` and processing URLs (`urlContext`). Your primary goal is to use these tools to directly answer the user's question. **DO NOT describe that you are going to use a tool.** Execute the tool and provide the final answer based on its output.\n" .
+            "4.  **FULFILL THE REQUEST:** If the user provides a URL to be summarized, use the `urlContext` tool to access the information and provide the summary. If the user asks a general question, use `googleSearch` to find the answer. If they ask a question about a URL, use both tools as needed.\n".
+            "5.  **PRIORITIZE THE ANSWER:** Your final response should be the answer the user is looking for, not a plan of how you will find it.";
     }
+    
     /**
      * Finds the most relevant memories and formats them with timestamps.
      * @return array ['context' => string, 'used_interaction_ids' => array]
@@ -88,11 +87,8 @@ class MemoryManager
             $context = "No relevant memories found.\n";
         } else {
             foreach ($relevantMemories as $id => $memory) {
-                // --- IMPROVEMENT: Add timestamp to the context ---
                 $timestamp = date('Y-m-d H:i:s', strtotime($memory['timestamp']));
                 $memoryText = "[On {$timestamp}] User said: '{$memory['user_input_raw']}'. You responded: '{$memory['ai_output']}'.\n";
-                // --- END IMPROVEMENT ---
-                
                 $memoryTokenCount = str_word_count($memoryText);
 
                 if ($tokenCount + $memoryTokenCount <= CONTEXT_TOKEN_BUDGET) {
