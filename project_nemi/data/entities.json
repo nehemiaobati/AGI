@@ -1,0 +1,503 @@
+{
+    "about": {
+        "name": "about",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e8f57d872d28.99336244",
+            "int_68e8f5de830cf6.00384132"
+        ]
+    },
+    "ai's": {
+        "name": "ai's",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "anything": {
+        "name": "anything",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f5de830cf6.00384132"
+        ]
+    },
+    "appears": {
+        "name": "appears",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "based": {
+        "name": "based",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "data": {
+        "name": "data",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "dont": {
+        "name": "dont",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f6de5d9632.84747007"
+        ]
+    },
+    "elaborate": {
+        "name": "elaborate",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "else": {
+        "name": "else",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f5de830cf6.00384132"
+        ]
+    },
+    "entities": {
+        "name": "entities",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "file": {
+        "name": "file",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "files": {
+        "name": "files",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "focusing": {
+        "name": "focusing",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4d9b62cb2.63719703"
+        ]
+    },
+    "football": {
+        "name": "football",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f675aab1c5.08435410"
+        ]
+    },
+    "have": {
+        "name": "have",
+        "type": "Concept",
+        "description": "",
+        "access_count": 4,
+        "relevance_score": 2.5,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668",
+            "int_68e8f65e4f5355.97980775",
+            "int_68e8f69e81ecd6.29768137",
+            "int_68e8f6de5d9632.84747007"
+        ]
+    },
+    "interactions": {
+        "name": "interactions",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "json": {
+        "name": "json",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "managing": {
+        "name": "managing",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "memories": {
+        "name": "memories",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "memory": {
+        "name": "memory",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "memorymanager": {
+        "name": "memorymanager",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e8f4d9b62cb2.63719703",
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "nemy": {
+        "name": "nemy",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f6de5d9632.84747007"
+        ]
+    },
+    "overall": {
+        "name": "overall",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "past": {
+        "name": "past",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "persists": {
+        "name": "persists",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "player": {
+        "name": "player",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f675aab1c5.08435410"
+        ]
+    },
+    "project": {
+        "name": "project",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e8f4d9b62cb2.63719703",
+            "int_68e8f6de5d9632.84747007"
+        ]
+    },
+    "project_nemi": {
+        "name": "project_nemi",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e8f4d9b62cb2.63719703",
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "pruning": {
+        "name": "pruning",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "purpose": {
+        "name": "purpose",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e8f4d9b62cb2.63719703",
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "relevance": {
+        "name": "relevance",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "remind": {
+        "name": "remind",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f69e81ecd6.29768137"
+        ]
+    },
+    "responsible": {
+        "name": "responsible",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "retrieving": {
+        "name": "retrieving",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "review": {
+        "name": "review",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4d9b62cb2.63719703"
+        ]
+    },
+    "reviewed": {
+        "name": "reviewed",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "right": {
+        "name": "right",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f6de5d9632.84747007"
+        ]
+    },
+    "satisfied": {
+        "name": "satisfied",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f6de5d9632.84747007"
+        ]
+    },
+    "school": {
+        "name": "school",
+        "type": "Concept",
+        "description": "",
+        "access_count": 3,
+        "relevance_score": 2,
+        "mentioned_in": [
+            "int_68e8f65e4f5355.97980775",
+            "int_68e8f675aab1c5.08435410",
+            "int_68e8f69e81ecd6.29768137"
+        ]
+    },
+    "scoring": {
+        "name": "scoring",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "storing": {
+        "name": "storing",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "structure": {
+        "name": "structure",
+        "type": "Concept",
+        "description": "",
+        "access_count": 2,
+        "relevance_score": 1.5,
+        "mentioned_in": [
+            "int_68e8f4d9b62cb2.63719703",
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "system": {
+        "name": "system",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "tell": {
+        "name": "tell",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f57d872d28.99336244"
+        ]
+    },
+    "this": {
+        "name": "this",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "tommorrow": {
+        "name": "tommorrow",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f65e4f5355.97980775"
+        ]
+    },
+    "using": {
+        "name": "using",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f4f515b131.58660668"
+        ]
+    },
+    "when": {
+        "name": "when",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f69e81ecd6.29768137"
+        ]
+    },
+    "with": {
+        "name": "with",
+        "type": "Concept",
+        "description": "",
+        "access_count": 1,
+        "relevance_score": 1,
+        "mentioned_in": [
+            "int_68e8f6de5d9632.84747007"
+        ]
+    }
+}
