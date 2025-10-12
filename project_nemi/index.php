@@ -21,20 +21,13 @@ function runCoreLogic(string $userInput): array
     $memory = new MemoryManager();
     $gemini = new GeminiClient();
 
-    // --- MODIFIED: Dynamic Tool Selection Logic ---
-    $toolsToUse = [];
-    // Enable Google Search by default for general knowledge.
-    $toolsToUse[] = 'googleSearch';
-    
-    // Use regex to detect if the user input contains a URL.
+    // Dynamic Tool Selection Logic
+    $toolsToUse = ['googleSearch']; // Enable search by default
     $urlPattern = '/\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i';
     if (preg_match($urlPattern, $userInput)) {
-        // If a URL is found, the AI can use its search capability to access it.
-        // We ensure 'googleSearch' is present as it's the mechanism for external data access.
-        // The prompt will guide the AI to focus on the URL.
-        $userInput .= "\n\n[SYSTEM NOTE: The user has provided a URL. Please prioritize analyzing and responding to the content of this URL.]";
+        // The prompt guides the AI to use its search tool to analyze the URL
+        $userInput .= "\n\n[SYSTEM NOTE: The user has provided a URL. Prioritize analyzing its content.]";
     }
-    // --- End Tool Selection ---
 
     $recalled = $memory->getRelevantContext($userInput);
     $context = $recalled['context'];
@@ -43,7 +36,6 @@ function runCoreLogic(string $userInput): array
     $currentTime = "CURRENT_TIME: " . date('Y-m-d H:i:s T');
     $finalPrompt = "{$systemPrompt}\n\n---RECALLED CONTEXT---\n{$context}---END CONTEXT---\n\n{$currentTime}\n\nUser query: \"{$userInput}\"";
 
-    // Pass the dynamically selected tools to the client
     $aiResponse = $gemini->generateResponse($finalPrompt, $toolsToUse);
 
     $newInteractionId = $memory->updateMemory($userInput, $aiResponse, $recalled['used_interaction_ids']);
@@ -57,7 +49,7 @@ function runCoreLogic(string $userInput): array
     ];
 }
 
-// --- Main Execution (Web Mode) ---
+// --- Main Web Mode Execution ---
 $userInput = '';
 $aiResponse = '';
 $context = '';
@@ -71,27 +63,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['prompt'])) {
     $interactionId = $result['interactionId'];
 }
 ?>
-<!-- The HTML section remains exactly the same as the previous version -->
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project NEMI V4.1</title>
+    <title>Project NEMI v4.2</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .feedback-buttons a { margin-right: 10px; }
         body { background-color: #212529; color: #e9ecef; }
         .container { max-width: 800px; }
         .card { border-color: #495057; }
         .card-header { background-color: #343a40; }
+        .feedback-buttons a { margin-right: 10px; }
     </style>
 </head>
 <body>
     <div class="container mt-5">
         <div class="text-center mb-4">
-            <h1 class="display-4">Project NEMI <span class="badge bg-primary">v4.1</span></h1>
-            <p class="lead text-muted">AI with Semantic Memory, Dynamic Tools & Feedback Loop</p>
+            <h1 class="display-4">Project NEMI <span class="badge bg-primary">v4.2</span></h1>
+            <p class="lead text-muted">AI with Semantic Memory & URL Fix</p>
         </div>
         <div class="card bg-dark mb-3">
             <div class="card-body">
@@ -104,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['prompt'])) {
         <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
             <div class="card bg-dark mb-3">
                 <div class="card-header">Your Prompt</div>
-                <div class="card-body"><p class="card-text"><?= htmlspecialchars($userInput) ?></p></div>
+                <div class="card-body"><p class="card-text"><?= nl2br(htmlspecialchars($userInput)) ?></p></div>
             </div>
             <div class="card bg-dark mb-3">
                 <div class="card-header d-flex justify-content-between align-items-center">

@@ -24,7 +24,7 @@ class MemoryManager
         ksort($this->interactions);
         ksort($this->entities);
 
-        // Ensure forward slashes are not escaped by default.
+        // **FIX IMPLEMENTED HERE**: Added JSON_UNESCAPED_SLASHES to prevent `\` in URLs.
         $options = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES;
 
         file_put_contents(INTERACTIONS_FILE, json_encode($this->interactions, $options));
@@ -38,36 +38,36 @@ class MemoryManager
             "1.  **ANALYZE TIMESTAMPS:** You will be given a `CURRENT_TIME` and `RECALLED_CONTEXT`. Use this to understand the history of events.\n" .
             "2.  **CALCULATE RELATIVE TIME:** Interpret expressions like 'yesterday' against the provided `CURRENT_TIME`.\n\n" .
             "**TOOL EXECUTION MANDATE:**\n" .
-            "3.  **DIRECTLY USE TOOLS:** You have `googleSearch` and `urlContext` tools. Your primary goal is to use these tools to directly answer the user's question. **DO NOT describe that you are going to use a tool.** Execute it and provide the final answer based on its output.\n" .
-            "4.  **FULFILL THE REQUEST:** Use the correct tool to answer the user's query and prioritize providing the final, complete answer.";
+            "3.  **DIRECTLY USE TOOLS:** You have a `googleSearch` tool. Your primary goal is to use this tool to directly answer the user's question. **DO NOT describe that you are going to use a tool.** Execute it and provide the final answer based on its output.\n" .
+            "4.  **FULFILL THE REQUEST:** If the user provides a URL, use your search ability to access its content and provide a summary. If they ask a general question, use search to find the answer.";
     }
 
     private function extractEntities(string $text): array
     {
+        // This function is simple; a more advanced version would use NLP libraries.
         $text = strtolower($text);
-        $words = preg_split('/[\s,\.\?\!]+/', $text);
-        $stopWords = ['a', 'an', 'the', 'is', 'in', 'it', 'of', 'for', 'on', 'what', 'were', 'my', 'that', 'we', 'to'];
+        // Prevent splitting URLs by common delimiters
+        $text = preg_replace('/https?:\/\/[^\s]+/', ' ', $text);
+        $words = preg_split('/[\s,\.\?\!\[\]:]+/', $text);
+        $stopWords = ['a', 'an', 'the', 'is', 'in', 'it', 'of', 'for', 'on', 'what', 'were', 'my', 'that', 'we', 'to', 'user', 'note', 'system', 'please'];
         return array_filter(array_unique($words), fn($word) => !in_array($word, $stopWords) && strlen($word) > 3);
     }
     
-    // --- NEW: Semantic Expansion of Entities ---
     private function normalizeAndExpandEntities(array $baseEntities): array
     {
         $expanded = $baseEntities;
         foreach ($baseEntities as $entityKey) {
             if (isset($this->entities[$entityKey]['relationships'])) {
-                // Add related entities to the search pool
                 $expanded = array_merge($expanded, array_keys($this->entities[$entityKey]['relationships']));
             }
         }
         return array_unique($expanded);
     }
 
-    // --- MODIFIED: Uses Semantic Expansion ---
     public function getRelevantContext(string $userInput): array
     {
         $inputEntities = $this->extractEntities($userInput);
-        $searchEntities = $this->normalizeAndExpandEntities($inputEntities); // Use expanded list
+        $searchEntities = $this->normalizeAndExpandEntities($inputEntities);
         $relevantInteractionIds = [];
 
         foreach ($searchEntities as $entityKey) {
@@ -110,23 +110,23 @@ class MemoryManager
         ];
     }
     
-    // --- MODIFIED: Implements Contextual Decay ---
     public function updateMemory(string $userInput, string $aiOutput, array $usedInteractionIds): string
     {
         $recentEntities = [];
-        // Apply rewards to used interactions and identify recent entities
         foreach ($usedInteractionIds as $id) {
             if (isset($this->interactions[$id])) {
                 $this->interactions[$id]['relevance_score'] += REWARD_SCORE;
                 $this->interactions[$id]['last_accessed'] = date('c');
-                $recentEntities = array_merge($recentEntities, $this->interactions[$id]['processed_input']['keywords']);
+                if (isset($this->interactions[$id]['processed_input']['keywords'])) {
+                    $recentEntities = array_merge($recentEntities, $this->interactions[$id]['processed_input']['keywords']);
+                }
             }
         }
         $recentEntities = array_unique($recentEntities);
 
-        // Apply decay to all interactions (contextual decay)
-        foreach ($this->interactions as $id => &$interaction) {
-            $isRelatedToRecentTopic = !empty(array_intersect($interaction['processed_input']['keywords'], $recentEntities));
+        foreach ($this->interactions as &$interaction) {
+            $keywords = $interaction['processed_input']['keywords'] ?? [];
+            $isRelatedToRecentTopic = !empty(array_intersect($keywords, $recentEntities));
             $decay = $isRelatedToRecentTopic ? DECAY_SCORE * RECENT_TOPIC_DECAY_MODIFIER : DECAY_SCORE;
             $interaction['relevance_score'] -= $decay;
         }
@@ -141,16 +141,15 @@ class MemoryManager
             'ai_output' => $aiOutput,
             'relevance_score' => INITIAL_SCORE,
             'last_accessed' => date('c'),
-            'context_used_ids' => $usedInteractionIds // For feedback
+            'context_used_ids' => $usedInteractionIds
         ];
         
         $this->updateEntitiesFromInteraction($keywords, $newId);
         $this->pruneMemory();
         
-        return $newId; // Return the ID for feedback purposes
+        return $newId;
     }
 
-    // --- MODIFIED: Builds Relationships ---
     private function updateEntitiesFromInteraction(array $keywords, string $interactionId): void
     {
         $isNovel = false;
@@ -170,12 +169,10 @@ class MemoryManager
             }
         }
         
-        // If the interaction introduced a new entity, give it a novelty bonus
         if ($isNovel) {
             $this->interactions[$interactionId]['relevance_score'] += NOVELTY_BONUS;
         }
 
-        // --- NEW: Update Relationships ---
         if (count($keywords) > 1) {
             foreach ($keywords as $k1) {
                 foreach ($keywords as $k2) {
@@ -187,21 +184,17 @@ class MemoryManager
         }
     }
 
-    // --- NEW: User Feedback Handling ---
     public function applyFeedback(string $interactionId, bool $isGood): void
     {
         if (!isset($this->interactions[$interactionId])) return;
 
         $adjustment = $isGood ? USER_FEEDBACK_REWARD : USER_FEEDBACK_PENALTY;
         
-        // Adjust the score of the answer itself
         $this->interactions[$interactionId]['relevance_score'] += $adjustment;
 
-        // Adjust the scores of the memories used to generate the answer
         $contextIds = $this->interactions[$interactionId]['context_used_ids'] ?? [];
         foreach ($contextIds as $id) {
             if (isset($this->interactions[$id])) {
-                // Apply a smaller adjustment to the context memories
                 $this->interactions[$id]['relevance_score'] += $adjustment / 2;
             }
         }
