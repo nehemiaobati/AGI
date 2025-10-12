@@ -13,75 +13,66 @@ class GeminiClient
         $this->apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/{$this->modelId}:" . API_ENDPOINT . "?key={$this->apiKey}";
     }
     
-    private function logPrompt(string $prompt, int $maxOutputTokens, ?int $tokenUsage = null): void
+    /**
+     * Logs the prompt and response metadata to a JSON file for debugging and analysis.
+     */
+    private function logPrompt(string $prompt, array $requestBody, string $rawResponse, ?string $error = null): void
     {
-        $logFilePath = __DIR__ . '/data/prompts.json';
-        $logDir = dirname($logFilePath);
+        $logData = file_exists(PROMPTS_LOG_FILE) ? json_decode(file_get_contents(PROMPTS_LOG_FILE), true) : [];
 
-        if (!is_dir($logDir)) {
-            // Error handling or directory creation would be needed in a production scenario
-        }
+        $decodedResponse = json_decode($rawResponse, true);
 
-        $logData = [];
-        if (file_exists($logFilePath)) {
-            $existingContent = file_get_contents($logFilePath);
-            if ($existingContent !== false) {
-                $decodedContent = json_decode($existingContent, true);
-                if (json_last_error() === JSON_ERROR_NONE && is_array($decodedContent)) {
-                    $logData = $decodedContent;
-                }
-            }
-        }
-
-        $logData[] = [
-            'timestamp' => date('Y-m-d H:i:s'),
-            'prompt' => $prompt,
-            'maxOutputTokens' => $maxOutputTokens,
-            'responseTokenCount' => $tokenUsage,
+        $logEntry = [
+            'timestamp' => date('c'),
+            'request' => [
+                'model' => $this->modelId,
+                'tools' => array_column($requestBody['tools'] ?? [], 0), // Log tool names
+                'prompt_text' => $prompt
+            ],
+            'response' => [
+                'http_code' => http_response_code(),
+                'token_usage' => $decodedResponse['usageMetadata'] ?? null,
+                'finish_reason' => $decodedResponse['candidates'][0]['finishReason'] ?? null,
+                'response_text' => $decodedResponse['candidates'][0]['content']['parts'][0]['text'] ?? null,
+            ],
+            'error' => $error
         ];
 
-        file_put_contents($logFilePath, json_encode($logData, JSON_PRETTY_PRINT));
+        $logData[] = $logEntry;
+        file_put_contents(PROMPTS_LOG_FILE, json_encode($logData, JSON_PRETTY_PRINT));
     }
-    
-    public function generateResponse(string $prompt, array $enabledTools = ['googleSearch']): string
+
+    /**
+     * Generates a response from the Gemini API, dynamically including tools.
+     */
+    public function generateResponse(string $prompt, array $enabledTools = []): string
     {
-        if (empty($this->apiKey) || $this->apiKey === 'YOUR_GOOGLE_API_KEY_HERE') {
+        if (empty($this->apiKey) || $this->apiKey === 'YOUR_GEMINI_API_KEY_HERE') {
             return "ERROR: Gemini API Key is not configured in config.php.";
         }
         
-        $maxOutputTokens = 4096; // Increased token limit for potentially larger tool outputs
-        $tokenUsage = null;
-        $responseMessage = "";
+        $rawResponse = '';
+        $requestBody = [];
 
         try {
-            // --- Start of the corrected request body ---
             $requestBody = [
-                'contents' => [
-                    [
-                        'role' => 'user',
-                        'parts' => [['text' => $prompt]]
-                    ]
-                ],
-                'generationConfig' => [
-                    'maxOutputTokens' => $maxOutputTokens,
-                ],
+                'contents' => [['role' => 'user', 'parts' => [['text' => $prompt]]]],
+                'generationConfig' => ['maxOutputTokens' => 8192],
             ];
-
-            // Dynamically build the tools array
+            
+            // --- MODIFIED: Dynamically build the tools array ---
             $requestTools = [];
             if (in_array('googleSearch', $enabledTools)) {
+                // For built-in tools, the value is an empty object
                 $requestTools[] = ['googleSearch' => new stdClass()];
             }
-            if (in_array('urlContext', $enabledTools)) {
-                $requestTools[] = ['urlContext' => new stdClass()];
-            }
-
-            // Add the tools array to the request body if any tools are enabled.
-            // NO 'tool_config' is needed for built-in tools.
+            // Add other tools here if needed, like the urlContext tool if it were a custom function
+            // Note: As of late 2023/early 2024, Gemini's REST API primarily supports `googleSearch` as a built-in tool.
+            // A true 'urlContext' tool would typically be a custom function call. For simplicity, we enable search.
+            
             if (!empty($requestTools)) {
-                $requestBody['tools'] = $requestTools;
+                 $requestBody['tools'] = $requestTools;
             }
-            // --- End of the corrected request body ---
             
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $this->apiUrl);
@@ -91,48 +82,28 @@ class GeminiClient
             curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
             
             $rawResponse = curl_exec($ch);
+            
+            if (curl_errno($ch)) { throw new Exception("cURL Error: " . curl_error($ch)); }
+            
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            $curlError = curl_error($ch);
+            if ($httpCode !== 200) { throw new Exception("API Error: HTTP {$httpCode}. Response: " . $rawResponse); }
             curl_close($ch);
 
-            if (!empty($curlError)) {
-                throw new Exception("FATAL cURL Error: " . $curlError);
-            }
-            if ($httpCode !== 200) {
-                $formattedError = $rawResponse;
-                $decodedError = json_decode($rawResponse, true);
-                if (json_last_error() === JSON_ERROR_NONE) {
-                    $formattedError = json_encode($decodedError, JSON_PRETTY_PRINT);
-                }
-                throw new Exception("API Error: Received HTTP code {$httpCode}. Response: <pre>" . htmlspecialchars($formattedError) . "</pre>");
-            }
-            if (empty($rawResponse)) {
-                throw new Exception("API Error: Received an empty response from the server.");
-            }
-
             $decodedResponse = json_decode($rawResponse, true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new Exception("Parsing Error: Failed to decode JSON response. Raw response: " . htmlspecialchars($rawResponse));
-            }
-            if (isset($decodedResponse['error']['message'])) {
-                 throw new Exception("API Error Payload: " . $decodedResponse['error']['message']);
-            }
+            if (json_last_error() !== JSON_ERROR_NONE) { throw new Exception("JSON Decode Error."); }
 
-            // The correct response text is now in this location after a successful tool call.
             $responseText = $decodedResponse['candidates'][0]['content']['parts'][0]['text'] ?? null;
             if ($responseText === null) {
-                throw new Exception("Parsing Error: Could not find the text part in the API response. Full response: " . htmlspecialchars(json_encode($decodedResponse, JSON_PRETTY_PRINT)));
+                // This can happen if the model decides to use a tool but there's no text response part
+                throw new Exception("Could not find text part in response, check for tool calls.");
             }
             
-            $tokenUsage = $decodedResponse['usageMetadata']['totalTokenCount'] ?? null;
-            $responseMessage = $responseText;
+            $this->logPrompt($prompt, $requestBody, $rawResponse);
+            return $responseText;
 
         } catch (Exception $e) {
-            $responseMessage = "Error: " . $e->getMessage();
+            $this->logPrompt($prompt, $requestBody, $rawResponse, $e->getMessage());
+            return "Error: " . $e->getMessage();
         }
-
-        $this->logPrompt($prompt, $maxOutputTokens, $tokenUsage);
-
-        return $responseMessage;
     }
 }

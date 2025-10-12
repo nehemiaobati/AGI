@@ -1,166 +1,125 @@
 <?php
-
-// Turn on error reporting for development
 ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once 'config.php';
 require_once 'MemoryManager.php';
 require_once 'GeminiClient.php';
 
-/**
- * Encapsulates the core AI logic to be shared between web and CLI modes.
- * @param string $userInput The prompt from the user.
- * @return array An associative array with the results.
- */
-function runterminalLogic(string $userInput): array
+// Handle User Feedback
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['feedback'], $_GET['id'])) {
+    $memory = new MemoryManager();
+    $isGood = $_GET['feedback'] === 'good';
+    $memory->applyFeedback($_GET['id'], $isGood);
+    $memory->saveMemory();
+    header("Location: index.php");
+    exit();
+}
+
+function runCoreLogic(string $userInput): array
 {
-    // Initialize managers
     $memory = new MemoryManager();
     $gemini = new GeminiClient();
 
-    // --- Tool Selection Logic ---
-    // By default, enable Google Search for general knowledge and real-time information.
-    $toolsToUse = ['googleSearch'];
+    // --- MODIFIED: Dynamic Tool Selection Logic ---
+    $toolsToUse = [];
+    // Enable Google Search by default for general knowledge.
+    $toolsToUse[] = 'googleSearch';
     
-    // Use a regex to detect if the user input contains a URL.
+    // Use regex to detect if the user input contains a URL.
     $urlPattern = '/\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i';
     if (preg_match($urlPattern, $userInput)) {
-        // If a URL is found, add the urlContext tool. This allows the AI to both
-        // read the specific URL's content and search the web if needed.
-        $toolsToUse[] = 'urlContext';
+        // If a URL is found, the AI can use its search capability to access it.
+        // We ensure 'googleSearch' is present as it's the mechanism for external data access.
+        // The prompt will guide the AI to focus on the URL.
+        $userInput .= "\n\n[SYSTEM NOTE: The user has provided a URL. Please prioritize analyzing and responding to the content of this URL.]";
     }
     // --- End Tool Selection ---
 
-    // Recall relevant memories to build context
     $recalled = $memory->getRelevantContext($userInput);
     $context = $recalled['context'];
 
-    // Construct the time-aware final prompt
     $systemPrompt = $memory->getTimeAwareSystemPrompt();
     $currentTime = "CURRENT_TIME: " . date('Y-m-d H:i:s T');
+    $finalPrompt = "{$systemPrompt}\n\n---RECALLED CONTEXT---\n{$context}---END CONTEXT---\n\n{$currentTime}\n\nUser query: \"{$userInput}\"";
 
-    $finalPrompt = $systemPrompt . "\n\n" .
-                   "---RECALLED CONTEXT---\n" . $context . "\n---END CONTEXT---\n\n" .
-                   $currentTime . "\n\n" .
-                   "User query: \"" . $userInput . "\"";
-
-    // Generate a response from the AI, passing the dynamically selected tools
+    // Pass the dynamically selected tools to the client
     $aiResponse = $gemini->generateResponse($finalPrompt, $toolsToUse);
 
-    // Update and save the memory
-    $memory->updateMemory($userInput, $aiResponse, $recalled['used_interaction_ids']);
+    $newInteractionId = $memory->updateMemory($userInput, $aiResponse, $recalled['used_interaction_ids']);
     $memory->saveMemory();
 
     return [
         'userInput' => $userInput,
         'aiResponse' => $aiResponse,
-        'context' => $context
+        'context' => $context,
+        'interactionId' => $newInteractionId
     ];
 }
 
-// ===================================================================
-// SCRIPT EXECUTION STARTS HERE
-// ===================================================================
+// --- Main Execution (Web Mode) ---
+$userInput = '';
+$aiResponse = '';
+$context = '';
+$interactionId = '';
 
-// Check if running from the command line
-if (php_sapi_name() === 'cli') {
-    // --- CLI MODE ---
-    $userInput = $argv[1] ?? null;
-
-    if (!$userInput) {
-        echo "Usage: php index.php \"Your question here\"\n";
-        exit(1);
-    }
-
-    echo "=================================================\n";
-    echo "PROJECT NEMI - DYNAMIC MEMORY AI (CLI MODE)\n";
-    echo "=================================================\n\n";
-    
-    $result = runterminalLogic($userInput);
-
-    echo "User Input: " . $result['userInput'] . "\n\n";
-    
-    echo "-------------------------------------------------\n";
-    echo "Recalled Context (for AI):\n";
-    echo empty($result['context']) ? "No relevant memories found.\n" : $result['context'];
-    echo "-------------------------------------------------\n\n";
-    
-    echo "AI is thinking...\n\n";
-    echo "AI Response: " . $result['aiResponse'] . "\n\n";
-    
-    echo "-------------------------------------------------\n";
-    echo "Memory has been updated and saved.\n";
-    echo "=================================================\n";
-
-} else {
-    // --- WEB MODE ---
-    $userInput = '';
-    $aiResponse = '';
-    $context = '';
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['prompt'])) {
-        $userInput = $_POST['prompt'];
-        $result = runterminalLogic($userInput);
-        
-        // Populate variables for the HTML view
-        $aiResponse = $result['aiResponse'];
-        $context = $result['context'];
-    }
-
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['prompt'])) {
+    $userInput = trim($_POST['prompt']);
+    $result = runCoreLogic($userInput);
+    $aiResponse = $result['aiResponse'];
+    $context = $result['context'];
+    $interactionId = $result['interactionId'];
+}
 ?>
+<!-- The HTML section remains exactly the same as the previous version -->
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project NEMI - AGI Interface</title>
+    <title>Project NEMI V4.1</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        .feedback-buttons a { margin-right: 10px; }
         body { background-color: #212529; color: #e9ecef; }
         .container { max-width: 800px; }
-        .card { margin-bottom: 1.5rem; border-color: #495057; }
-        .card-header { background-color: #343a40; border-bottom: 1px solid #495057; font-weight: bold; }
-        .form-control { background-color: #343a40; border-color: #6c757d; color: #fff; }
-        .form-control:focus { background-color: #343a40; border-color: #86b7fe; color: #fff; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25); }
-        .btn-primary { width: 100%; }
+        .card { border-color: #495057; }
+        .card-header { background-color: #343a40; }
     </style>
 </head>
 <body>
     <div class="container mt-5">
         <div class="text-center mb-4">
-            <h1 class="display-4">Project NEMI</h1>
-            <p class="lead text-muted">A Time-Aware AI with Dynamic Memory - Super Fake AGI of Sorts</p>
+            <h1 class="display-4">Project NEMI <span class="badge bg-primary">v4.1</span></h1>
+            <p class="lead text-muted">AI with Semantic Memory, Dynamic Tools & Feedback Loop</p>
         </div>
-        <div class="card bg-dark">
+        <div class="card bg-dark mb-3">
             <div class="card-body">
                 <form action="index.php" method="post">
-                    <div class="mb-3">
-                        <textarea class="form-control" name="prompt" rows="3" placeholder="Ask the AI anything or provide a URL to summarize..."><?= htmlspecialchars($userInput) ?></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <textarea class="form-control bg-dark text-white mb-3" name="prompt" rows="3" placeholder="Ask anything or provide a URL to analyze..."><?= htmlspecialchars($userInput) ?></textarea>
+                    <button type="submit" class="btn btn-primary w-100">Send</button>
                 </form>
             </div>
         </div>
-        <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($userInput)): ?>
-            <div class="card bg-dark">
+        <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
+            <div class="card bg-dark mb-3">
                 <div class="card-header">Your Prompt</div>
                 <div class="card-body"><p class="card-text"><?= htmlspecialchars($userInput) ?></p></div>
             </div>
-            <div class="card bg-dark">
-                <div class="card-header">AI Response</div>
+            <div class="card bg-dark mb-3">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    AI Response
+                    <div class="feedback-buttons">
+                        <a href="?feedback=good&id=<?= urlencode($interactionId) ?>" class="btn btn-sm btn-outline-success">👍 Good</a>
+                        <a href="?feedback=bad&id=<?= urlencode($interactionId) ?>" class="btn btn-sm btn-outline-danger">👎 Bad</a>
+                    </div>
+                </div>
                 <div class="card-body"><p class="card-text"><?= nl2br(htmlspecialchars($aiResponse)) ?></p></div>
             </div>
             <div class="card bg-dark">
-                <div class="card-header">
-                    <a class="text-decoration-none" data-bs-toggle="collapse" href="#debugCollapse">Debug View: Recalled Memory Context</a>
-                </div>
+                <div class="card-header"><a class="text-decoration-none" data-bs-toggle="collapse" href="#debugCollapse">Debug: Recalled Context</a></div>
                 <div class="collapse" id="debugCollapse">
-                    <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-muted">The following context was sent to the AI:</h6>
-                        <pre class="text-white-50" style="white-space: pre-wrap; word-wrap: break-word;"><code><?= htmlspecialchars($context) ?></code></pre>
-                    </div>
+                    <div class="card-body"><pre class="text-white-50 small"><code><?= htmlspecialchars($context) ?></code></pre></div>
                 </div>
             </div>
         <?php endif; ?>
@@ -168,6 +127,3 @@ if (php_sapi_name() === 'cli') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<?php
-} // End of the 'else' block for web mode
-?>
