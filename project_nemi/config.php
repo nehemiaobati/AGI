@@ -1,36 +1,38 @@
 <?php
 
 // --- API Configuration ---
-// IMPORTANT: For production, use environment variables instead of hardcoding keys.
 define('GEMINI_API_KEY', 'AIzaSyBEkzJRNr-CvwqVCJQtcYs3bb2M-Ikq0pA');
 define('MODEL_ID', 'gemini-flash-lite-latest'); // A powerful, generally available model
 define('API_ENDPOINT', 'generateContent'); // Use the more reliable non-streaming endpoint
 
-
-
+// --- NEW: Embedding Configuration ---
+define('ENABLE_EMBEDDINGS', true); // Master switch to enable/disable vector search.
+define('EMBEDDING_MODEL_ID', 'text-embedding-004'); // Specialized model for embeddings.
 
 // --- File Paths ---
 define('DATA_DIR', __DIR__ . '/data');
 define('INTERACTIONS_FILE', DATA_DIR . '/interactions.json');
 define('ENTITIES_FILE', DATA_DIR . '/entities.json');
-define('PROMPTS_LOG_FILE', DATA_DIR . '/prompts.json'); // Log file for prompts
+define('PROMPTS_LOG_FILE', DATA_DIR . '/prompts.json');
 
-// --- Memory Logic V4 Configuration ---
-define('REWARD_SCORE', 0.5);          // Base score added to a memory when it's recalled
-define('DECAY_SCORE', 0.05);         // Base score subtracted from unused memories
-define('INITIAL_SCORE', 1.0);        // Starting score for a new memory
-define('PRUNING_THRESHOLD', 500);    // Max interactions before pruning
-define('CONTEXT_TOKEN_BUDGET', 4000); // Max words for context
+// --- Memory Logic Configuration ---
+define('REWARD_SCORE', 0.5);
+define('DECAY_SCORE', 0.05);
+define('INITIAL_SCORE', 1.0);
+define('PRUNING_THRESHOLD', 500);
+define('CONTEXT_TOKEN_BUDGET', 4000);
 
-// --- NEW: Advanced Scoring & Relationships ---
-define('NOVELTY_BONUS', 0.3);        // Extra reward for interactions that introduce a new entity
-define('RELATIONSHIP_STRENGTH_INCREMENT', 0.1); // How much to strengthen a link between two entities
-define('RECENT_TOPIC_DECAY_MODIFIER', 0.1); // Multiplier for decay (0.1 = 90% less decay for recent topics)
-define('USER_FEEDBACK_REWARD', 0.5);   // Score boost for a "Good Answer"
-define('USER_FEEDBACK_PENALTY', -0.5); // Score penalty for a "Bad Answer"
-
-
+// --- NEW: Hybrid Search Tuning ---
+// Balances between keyword (relevance_score) and semantic (similarity) search.
+// 0.0 = Pure keyword search. 1.0 = Pure semantic search. 0.5 is balanced.
+define('HYBRID_SEARCH_ALPHA', 0.5);
+// The number of top semantic results to fetch before ranking.
+define('VECTOR_SEARCH_TOP_K', 15);
 
 
-
-
+// --- Advanced Scoring & Relationships ---
+define('NOVELTY_BONUS', 0.3);
+define('RELATIONSHIP_STRENGTH_INCREMENT', 0.1);
+define('RECENT_TOPIC_DECAY_MODIFIER', 0.1);
+define('USER_FEEDBACK_REWARD', 0.5);
+define('USER_FEEDBACK_PENALTY', -0.5);

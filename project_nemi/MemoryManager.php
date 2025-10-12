@@ -1,9 +1,12 @@
 <?php
+// Now requires the new EmbeddingClient
+require_once 'EmbeddingClient.php';
 
 class MemoryManager
 {
     private array $interactions = [];
     private array $entities = [];
+    private ?EmbeddingClient $embeddingClient;
 
     public function __construct()
     {
@@ -11,6 +14,10 @@ class MemoryManager
             mkdir(DATA_DIR, 0775, true);
         }
         $this->loadMemory();
+
+        // Instantiate the client only if embeddings are enabled.
+        // This is where you would swap in a different client (e.g., new OllamaEmbeddingClient()).
+        $this->embeddingClient = ENABLE_EMBEDDINGS ? new EmbeddingClient() : null;
     }
 
     private function loadMemory(): void
@@ -23,74 +30,96 @@ class MemoryManager
     {
         ksort($this->interactions);
         ksort($this->entities);
-
-        // **FIX IMPLEMENTED HERE**: Added JSON_UNESCAPED_SLASHES to prevent `\` in URLs.
         $options = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES;
-
         file_put_contents(INTERACTIONS_FILE, json_encode($this->interactions, $options));
         file_put_contents(ENTITIES_FILE, json_encode($this->entities, $options));
     }
 
-    public function getTimeAwareSystemPrompt(): string
-    {
-        return "**PRIMARY DIRECTIVE: YOU ARE A HELPFUL, TIME-AWARE ASSISTANT.**\n\n" .
-            "**RULES OF OPERATION:**\n" .
-            "1.  **ANALYZE TIMESTAMPS:** You will be given a `CURRENT_TIME` and `RECALLED_CONTEXT`. Use this to understand the history of events.\n" .
-            "2.  **CALCULATE RELATIVE TIME:** Interpret expressions like 'yesterday' against the provided `CURRENT_TIME`.\n\n" .
-            "**TOOL EXECUTION MANDATE:**\n" .
-            "3.  **DIRECTLY USE TOOLS:** You have a `googleSearch` tool. Your primary goal is to use this tool to directly answer the user's question. **DO NOT describe that you are going to use a tool.** Execute it and provide the final answer based on its output.\n" .
-            "4.  **FULFILL THE REQUEST:** If the user provides a URL, use your search ability to access its content and provide a summary. If they ask a general question, use search to find the answer.";
-    }
+    // --- Core Memory Retrieval (HYBRID SEARCH) ---
 
-    private function extractEntities(string $text): array
+    /**
+     * Calculates the cosine similarity between two vectors.
+     * @return float A value between -1 and 1. Higher is more similar.
+     */
+    private function cosineSimilarity(array $vecA, array $vecB): float
     {
-        // This function is simple; a more advanced version would use NLP libraries.
-        $text = strtolower($text);
-        // Prevent splitting URLs by common delimiters
-        $text = preg_replace('/https?:\/\/[^\s]+/', ' ', $text);
-        $words = preg_split('/[\s,\.\?\!\[\]:]+/', $text);
-        $stopWords = ['a', 'an', 'the', 'is', 'in', 'it', 'of', 'for', 'on', 'what', 'were', 'my', 'that', 'we', 'to', 'user', 'note', 'system', 'please'];
-        return array_filter(array_unique($words), fn($word) => !in_array($word, $stopWords) && strlen($word) > 3);
-    }
-    
-    private function normalizeAndExpandEntities(array $baseEntities): array
-    {
-        $expanded = $baseEntities;
-        foreach ($baseEntities as $entityKey) {
-            if (isset($this->entities[$entityKey]['relationships'])) {
-                $expanded = array_merge($expanded, array_keys($this->entities[$entityKey]['relationships']));
-            }
+        $dotProduct = 0.0;
+        $magA = 0.0;
+        $magB = 0.0;
+        $count = count($vecA);
+
+        for ($i = 0; $i < $count; $i++) {
+            $dotProduct += $vecA[$i] * $vecB[$i];
+            $magA += $vecA[$i] * $vecA[$i];
+            $magB += $vecB[$i] * $vecB[$i];
         }
-        return array_unique($expanded);
+
+        $magA = sqrt($magA);
+        $magB = sqrt($magB);
+
+        if ($magA == 0 || $magB == 0) {
+            return 0;
+        }
+
+        return $dotProduct / ($magA * $magB);
     }
 
     public function getRelevantContext(string $userInput): array
     {
+        // --- Vector Search (Semantic) ---
+        $semanticResults = [];
+        if ($this->embeddingClient !== null) {
+            $inputVector = $this->embeddingClient->getEmbedding($userInput);
+            if ($inputVector !== null) {
+                $similarities = [];
+                foreach ($this->interactions as $id => $interaction) {
+                    if (isset($interaction['embedding'])) {
+                        $similarity = $this->cosineSimilarity($inputVector, $interaction['embedding']);
+                        $similarities[$id] = $similarity;
+                    }
+                }
+                // Sort by similarity score, descending
+                arsort($similarities);
+                $semanticResults = array_slice($similarities, 0, VECTOR_SEARCH_TOP_K, true);
+            }
+        }
+
+        // --- Keyword Search (Lexical) ---
         $inputEntities = $this->extractEntities($userInput);
         $searchEntities = $this->normalizeAndExpandEntities($inputEntities);
-        $relevantInteractionIds = [];
-
+        $keywordResults = [];
         foreach ($searchEntities as $entityKey) {
             if (isset($this->entities[$entityKey])) {
-                $relevantInteractionIds = array_merge($relevantInteractionIds, $this->entities[$entityKey]['mentioned_in']);
+                foreach ($this->entities[$entityKey]['mentioned_in'] as $id) {
+                    // Store the relevance score for ranking
+                    if (isset($this->interactions[$id])) {
+                        $keywordResults[$id] = $this->interactions[$id]['relevance_score'];
+                    }
+                }
             }
         }
-        
-        $uniqueInteractionIds = array_unique($relevantInteractionIds);
-        $relevantMemories = [];
-        foreach ($uniqueInteractionIds as $id) {
-            if (isset($this->interactions[$id])) {
-                $relevantMemories[$id] = $this->interactions[$id];
-            }
+        arsort($keywordResults);
+
+        // --- Hybrid Fusion ---
+        $fusedScores = [];
+        $allIds = array_unique(array_merge(array_keys($semanticResults), array_keys($keywordResults)));
+
+        foreach ($allIds as $id) {
+            $semanticScore = $semanticResults[$id] ?? 0.0;
+            // Normalize relevance score to be roughly between 0 and 1 for better blending
+            $relevanceScore = isset($keywordResults[$id]) ? tanh($keywordResults[$id] / 10) : 0.0;
+
+            // Weighted average of both scores
+            $fusedScores[$id] = (HYBRID_SEARCH_ALPHA * $semanticScore) + ((1 - HYBRID_SEARCH_ALPHA) * $relevanceScore);
         }
+        arsort($fusedScores);
 
-        uasort($relevantMemories, fn($a, $b) => ($b['relevance_score'] ?? 1.0) <=> ($a['relevance_score'] ?? 1.0));
-
+        // --- Build Context from Fused Results ---
         $context = '';
         $tokenCount = 0;
         $usedInteractionIds = [];
-        
-        foreach ($relevantMemories as $id => $memory) {
+        foreach ($fusedScores as $id => $score) {
+            $memory = $this->interactions[$id];
             $timestamp = date('Y-m-d H:i:s', strtotime($memory['timestamp']));
             $memoryText = "[On {$timestamp}] User: '{$memory['user_input_raw']}'. You: '{$memory['ai_output']}'.\n";
             $memoryTokenCount = str_word_count($memoryText);
@@ -109,9 +138,10 @@ class MemoryManager
             'used_interaction_ids' => $usedInteractionIds
         ];
     }
-    
+
     public function updateMemory(string $userInput, string $aiOutput, array $usedInteractionIds): string
     {
+        // (Reward/Decay logic remains the same)
         $recentEntities = [];
         foreach ($usedInteractionIds as $id) {
             if (isset($this->interactions[$id])) {
@@ -130,10 +160,20 @@ class MemoryManager
             $decay = $isRelatedToRecentTopic ? DECAY_SCORE * RECENT_TOPIC_DECAY_MODIFIER : DECAY_SCORE;
             $interaction['relevance_score'] -= $decay;
         }
+        // (End of unchanged section)
+
 
         $newId = uniqid('int_', true);
         $keywords = $this->extractEntities($userInput);
-        
+
+        // --- NEW: Generate and store embedding for the new interaction ---
+        $embedding = null;
+        if ($this->embeddingClient !== null) {
+            $fullText = "User: {$userInput} | AI: {$aiOutput}";
+            $embedding = $this->embeddingClient->getEmbedding($fullText);
+        }
+        // --- End of new section ---
+
         $this->interactions[$newId] = [
             'timestamp' => date('c'),
             'user_input_raw' => $userInput,
@@ -141,15 +181,39 @@ class MemoryManager
             'ai_output' => $aiOutput,
             'relevance_score' => INITIAL_SCORE,
             'last_accessed' => date('c'),
-            'context_used_ids' => $usedInteractionIds
+            'context_used_ids' => $usedInteractionIds,
+            'embedding' => $embedding // Add the new embedding to the record
         ];
-        
+
         $this->updateEntitiesFromInteraction($keywords, $newId);
         $this->pruneMemory();
-        
+
         return $newId;
     }
 
+    // (All other functions: extractEntities, normalizeAndExpandEntities, getTimeAwareSystemPrompt, etc., remain the same)
+    public function getTimeAwareSystemPrompt(): string
+    {
+        return "**PRIMARY DIRECTIVE: YOU ARE A HELPFUL, TIME-AWARE ASSISTANT.**\n\n" . "**RULES OF OPERATION:**\n" . "1.  **ANALYZE TIMESTAMPS:** You will be given a `CURRENT_TIME` and `RECALLED_CONTEXT`. Use this to understand the history of events.\n" . "2.  **CALCULATE RELATIVE TIME:** Interpret expressions like 'yesterday' against the provided `CURRENT_TIME`.\n\n" . "**TOOL EXECUTION MANDATE:**\n" . "3.  **DIRECTLY USE TOOLS:** You have a `googleSearch` tool. Your primary goal is to use this tool to directly answer the user's question. **DO NOT describe that you are going to use a tool.** Execute it and provide the final answer based on its output.\n" . "4.  **FULFILL THE REQUEST:** If the user provides a URL, use your search ability to access its content and provide a summary. If they ask a general question, use search to find the answer.";
+    }
+    private function extractEntities(string $text): array
+    {
+        $text = strtolower($text);
+        $text = preg_replace('/https?:\/\/[^\s]+/', ' ', $text);
+        $words = preg_split('/[\s,\.\?\!\[\]:]+/', $text);
+        $stopWords = ['a', 'an', 'the', 'is', 'in', 'it', 'of', 'for', 'on', 'what', 'were', 'my', 'that', 'we', 'to', 'user', 'note', 'system', 'please'];
+        return array_filter(array_unique($words), fn($word) => !in_array($word, $stopWords) && strlen($word) > 3);
+    }
+    private function normalizeAndExpandEntities(array $baseEntities): array
+    {
+        $expanded = $baseEntities;
+        foreach ($baseEntities as $entityKey) {
+            if (isset($this->entities[$entityKey]['relationships'])) {
+                $expanded = array_merge($expanded, array_keys($this->entities[$entityKey]['relationships']));
+            }
+        }
+        return array_unique($expanded);
+    }
     private function updateEntitiesFromInteraction(array $keywords, string $interactionId): void
     {
         $isNovel = false;
@@ -157,10 +221,7 @@ class MemoryManager
             $entityKey = strtolower($keyword);
             if (!isset($this->entities[$entityKey])) {
                 $isNovel = true;
-                $this->entities[$entityKey] = [
-                    'name' => $keyword, 'type' => 'Concept', 'access_count' => 0, 'relevance_score' => INITIAL_SCORE,
-                    'mentioned_in' => [], 'relationships' => []
-                ];
+                $this->entities[$entityKey] = ['name' => $keyword, 'type' => 'Concept', 'access_count' => 0, 'relevance_score' => INITIAL_SCORE, 'mentioned_in' => [], 'relationships' => []];
             }
             $this->entities[$entityKey]['access_count']++;
             $this->entities[$entityKey]['relevance_score'] += REWARD_SCORE;
@@ -168,11 +229,9 @@ class MemoryManager
                 $this->entities[$entityKey]['mentioned_in'][] = $interactionId;
             }
         }
-        
         if ($isNovel) {
             $this->interactions[$interactionId]['relevance_score'] += NOVELTY_BONUS;
         }
-
         if (count($keywords) > 1) {
             foreach ($keywords as $k1) {
                 foreach ($keywords as $k2) {
@@ -183,15 +242,12 @@ class MemoryManager
             }
         }
     }
-
     public function applyFeedback(string $interactionId, bool $isGood): void
     {
-        if (!isset($this->interactions[$interactionId])) return;
-
+        if (!isset($this->interactions[$interactionId]))
+            return;
         $adjustment = $isGood ? USER_FEEDBACK_REWARD : USER_FEEDBACK_PENALTY;
-        
         $this->interactions[$interactionId]['relevance_score'] += $adjustment;
-
         $contextIds = $this->interactions[$interactionId]['context_used_ids'] ?? [];
         foreach ($contextIds as $id) {
             if (isset($this->interactions[$id])) {
@@ -199,7 +255,6 @@ class MemoryManager
             }
         }
     }
-    
     private function pruneMemory(): void
     {
         if (count($this->interactions) > PRUNING_THRESHOLD) {
