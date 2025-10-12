@@ -2,7 +2,7 @@
 
 // --- API Configuration ---
 define('GEMINI_API_KEY', 'AIzaSyBEkzJRNr-CvwqVCJQtcYs3bb2M-Ikq0pA');
-define('MODEL_ID', 'gemini-flash-lite-latest'); // A powerful, generally available model
+define('MODEL_ID', 'gemini-2.5-flash-lite'); // A powerful, generally available model
 define('API_ENDPOINT', 'generateContent'); // Use the more reliable non-streaming endpoint
 
 // --- NEW: Embedding Configuration ---
