@@ -118,7 +118,38 @@ class MemoryManager
         $context = '';
         $tokenCount = 0;
         $usedInteractionIds = [];
+
+        // --- NEW: Force-Inject a variable number of Recent Interactions ---
+        // Check if the feature is enabled and if there are any interactions.
+        if (defined('FORCED_RECENT_INTERACTIONS') && FORCED_RECENT_INTERACTIONS > 0 && !empty($this->interactions)) {
+            // Get the last N interactions, where N is our config value.
+            // `true` preserves the original keys (the interaction IDs).
+            $recentInteractions = array_slice($this->interactions, -FORCED_RECENT_INTERACTIONS, null, true);
+
+            // Loop through them and add them to the context string.
+            foreach ($recentInteractions as $id => $interaction) {
+                $timestamp = date('Y-m-d H:i:s', strtotime($interaction['timestamp']));
+                $memoryText = "[On {$timestamp}] User: '{$interaction['user_input_raw']}'. You: '{$interaction['ai_output']}'.\n";
+                $memoryTokenCount = str_word_count($memoryText);
+
+                // Ensure we don't exceed the budget right away.
+                if ($tokenCount + $memoryTokenCount <= CONTEXT_TOKEN_BUDGET) {
+                    $context .= $memoryText;
+                    $tokenCount += $memoryTokenCount;
+                    // Keep track of the IDs we've already added.
+                    $usedInteractionIds[] = $id;
+                }
+            }
+        }
+        // --- End of New Code ---
+
+        // Loop through the main hybrid search results.
         foreach ($fusedScores as $id => $score) {
+            // --- UPDATED: Check if this ID was already force-included. ---
+            if (in_array($id, $usedInteractionIds)) {
+                continue; // Skip this memory to avoid duplication.
+            }
+
             if (!isset($this->interactions[$id])) continue;
             $memory = $this->interactions[$id];
             $timestamp = date('Y-m-d H:i:s', strtotime($memory['timestamp']));
