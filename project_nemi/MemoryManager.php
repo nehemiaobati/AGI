@@ -73,7 +73,7 @@ class MemoryManager
             if ($inputVector !== null) {
                 $similarities = [];
                 foreach ($this->interactions as $id => $interaction) {
-                    if (isset($interaction['embedding'])) {
+                    if (isset($interaction['embedding']) && is_array($interaction['embedding'])) {
                         $similarity = $this->cosineSimilarity($inputVector, $interaction['embedding']);
                         $similarities[$id] = $similarity;
                     }
@@ -119,6 +119,7 @@ class MemoryManager
         $tokenCount = 0;
         $usedInteractionIds = [];
         foreach ($fusedScores as $id => $score) {
+            if (!isset($this->interactions[$id])) continue;
             $memory = $this->interactions[$id];
             $timestamp = date('Y-m-d H:i:s', strtotime($memory['timestamp']));
             $memoryText = "[On {$timestamp}] User: '{$memory['user_input_raw']}'. You: '{$memory['ai_output']}'.\n";
@@ -141,7 +142,6 @@ class MemoryManager
 
     public function updateMemory(string $userInput, string $aiOutput, array $usedInteractionIds): string
     {
-        // (Reward/Decay logic remains the same)
         $recentEntities = [];
         foreach ($usedInteractionIds as $id) {
             if (isset($this->interactions[$id])) {
@@ -160,8 +160,6 @@ class MemoryManager
             $decay = $isRelatedToRecentTopic ? DECAY_SCORE * RECENT_TOPIC_DECAY_MODIFIER : DECAY_SCORE;
             $interaction['relevance_score'] -= $decay;
         }
-        // (End of unchanged section)
-
 
         $newId = uniqid('int_', true);
         $keywords = $this->extractEntities($userInput);
@@ -172,7 +170,6 @@ class MemoryManager
             $fullText = "User: {$userInput} | AI: {$aiOutput}";
             $embedding = $this->embeddingClient->getEmbedding($fullText);
         }
-        // --- End of new section ---
 
         $this->interactions[$newId] = [
             'timestamp' => date('c'),
@@ -191,29 +188,6 @@ class MemoryManager
         return $newId;
     }
 
-    // (All other functions: extractEntities, normalizeAndExpandEntities, getTimeAwareSystemPrompt, etc., remain the same)
-    public function getTimeAwareSystemPrompt(): string
-    {
-        return "**PRIMARY DIRECTIVE: YOU ARE A HELPFUL, TIME-AWARE ASSISTANT.**\n\n" . "**RULES OF OPERATION:**\n" . "1.  **ANALYZE TIMESTAMPS:** You will be given a `CURRENT_TIME` and `RECALLED_CONTEXT`. Use this to understand the history of events.\n" . "2.  **CALCULATE RELATIVE TIME:** Interpret expressions like 'yesterday' against the provided `CURRENT_TIME`.\n\n" . "**TOOL EXECUTION MANDATE:**\n" . "3.  **DIRECTLY USE TOOLS:** You have a `googleSearch` tool. Your primary goal is to use this tool to directly answer the user's question. **DO NOT describe that you are going to use a tool.** Execute it and provide the final answer based on its output.\n" . "4.  **FULFILL THE REQUEST:** If the user provides a URL, use your search ability to access its content and provide a summary. If they ask a general question, use search to find the answer.";
-    }
-    private function extractEntities(string $text): array
-    {
-        $text = strtolower($text);
-        $text = preg_replace('/https?:\/\/[^\s]+/', ' ', $text);
-        $words = preg_split('/[\s,\.\?\!\[\]:]+/', $text);
-        $stopWords = ['a', 'an', 'the', 'is', 'in', 'it', 'of', 'for', 'on', 'what', 'were', 'my', 'that', 'we', 'to', 'user', 'note', 'system', 'please'];
-        return array_filter(array_unique($words), fn($word) => !in_array($word, $stopWords) && strlen($word) > 3);
-    }
-    private function normalizeAndExpandEntities(array $baseEntities): array
-    {
-        $expanded = $baseEntities;
-        foreach ($baseEntities as $entityKey) {
-            if (isset($this->entities[$entityKey]['relationships'])) {
-                $expanded = array_merge($expanded, array_keys($this->entities[$entityKey]['relationships']));
-            }
-        }
-        return array_unique($expanded);
-    }
     private function updateEntitiesFromInteraction(array $keywords, string $interactionId): void
     {
         $isNovel = false;
@@ -221,7 +195,14 @@ class MemoryManager
             $entityKey = strtolower($keyword);
             if (!isset($this->entities[$entityKey])) {
                 $isNovel = true;
-                $this->entities[$entityKey] = ['name' => $keyword, 'type' => 'Concept', 'access_count' => 0, 'relevance_score' => INITIAL_SCORE, 'mentioned_in' => [], 'relationships' => []];
+                $this->entities[$entityKey] = [
+                    'name' => $keyword,
+                    'type' => 'Concept',
+                    'access_count' => 0,
+                    'relevance_score' => INITIAL_SCORE,
+                    'mentioned_in' => [],
+                    'relationships' => []
+                ];
             }
             $this->entities[$entityKey]['access_count']++;
             $this->entities[$entityKey]['relevance_score'] += REWARD_SCORE;
@@ -229,9 +210,11 @@ class MemoryManager
                 $this->entities[$entityKey]['mentioned_in'][] = $interactionId;
             }
         }
+
         if ($isNovel) {
             $this->interactions[$interactionId]['relevance_score'] += NOVELTY_BONUS;
         }
+
         if (count($keywords) > 1) {
             foreach ($keywords as $k1) {
                 foreach ($keywords as $k2) {
@@ -242,12 +225,15 @@ class MemoryManager
             }
         }
     }
+
     public function applyFeedback(string $interactionId, bool $isGood): void
     {
-        if (!isset($this->interactions[$interactionId]))
-            return;
+        if (!isset($this->interactions[$interactionId])) return;
+
         $adjustment = $isGood ? USER_FEEDBACK_REWARD : USER_FEEDBACK_PENALTY;
+
         $this->interactions[$interactionId]['relevance_score'] += $adjustment;
+
         $contextIds = $this->interactions[$interactionId]['context_used_ids'] ?? [];
         foreach ($contextIds as $id) {
             if (isset($this->interactions[$id])) {
@@ -255,11 +241,43 @@ class MemoryManager
             }
         }
     }
+
     private function pruneMemory(): void
     {
         if (count($this->interactions) > PRUNING_THRESHOLD) {
             uasort($this->interactions, fn($a, $b) => ($a['relevance_score'] ?? 1.0) <=> ($b['relevance_score'] ?? 1.0));
             $this->interactions = array_slice($this->interactions, count($this->interactions) - PRUNING_THRESHOLD, null, true);
         }
+    }
+
+    public function getTimeAwareSystemPrompt(): string
+    {
+        return "**PRIMARY DIRECTIVE: YOU ARE A HELPFUL, TIME-AWARE ASSISTANT.**\n\n" .
+            "**RULES OF OPERATION:**\n" .
+            "1.  **ANALYZE TIMESTAMPS:** You will be given a `CURRENT_TIME` and `RECALLED_CONTEXT`. Use this to understand the history of events.\n" .
+            "2.  **CALCULATE RELATIVE TIME:** Interpret expressions like 'yesterday' against the provided `CURRENT_TIME`.\n\n" .
+            "**TOOL EXECUTION MANDATE:**\n" .
+            "3.  **DIRECTLY USE TOOLS:** You have a `googleSearch` tool. Your primary goal is to use this tool to directly answer the user's question. **DO NOT describe that you are going to use a tool.** Execute it and provide the final answer based on its output.\n" .
+            "4.  **FULFILL THE REQUEST:** If the user provides a URL, use your search ability to access its content and provide a summary. If they ask a general question, use search to find the answer.";
+    }
+
+    private function extractEntities(string $text): array
+    {
+        $text = strtolower($text);
+        $text = preg_replace('/https?:\/\/[^\s]+/', ' ', $text);
+        $words = preg_split('/[\s,\.\?\!\[\]:]+/', $text);
+        $stopWords = ['a', 'an', 'the', 'is', 'in', 'it', 'of', 'for', 'on', 'what', 'were', 'my', 'that', 'we', 'to', 'user', 'note', 'system', 'please'];
+        return array_filter(array_unique($words), fn($word) => !in_array($word, $stopWords) && strlen($word) > 3);
+    }
+
+    private function normalizeAndExpandEntities(array $baseEntities): array
+    {
+        $expanded = $baseEntities;
+        foreach ($baseEntities as $entityKey) {
+            if (isset($this->entities[$entityKey]['relationships'])) {
+                $expanded = array_merge($expanded, array_keys($this->entities[$entityKey]['relationships']));
+            }
+        }
+        return array_unique($expanded);
     }
 }
