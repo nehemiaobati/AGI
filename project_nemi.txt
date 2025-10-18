@@ -1,9 +1,13 @@
- 
 Project NEMI: A Comprehensive Technical Overview and Implementation Guide
-Document Version: 5.0
-Date: October 12, 2025
+Document Version: 5.1
+Date: October 13, 2025
 Author: AI Agent
 Revision History
+•	Version 5.1 (October 13, 2025) - AI Agent
+o	Enhanced Error Handling: Overhauled the generateResponse method in GeminiClient.php to provide more robust and user-friendly error handling.
+o	Specific API Error Parsing: The client now attempts to parse the JSON error response from the Gemini API to log specific error details (e.g., INVALID_ARGUMENT, PERMISSION_DENIED).
+o	User-Friendly Error Messages: The system now returns a generic, user-friendly error message to the UI to avoid exposing raw technical details, while logging the full error for debugging purposes.
+o	Refined Exception Handling: Improved the logic for handling different HTTP status codes and cURL failures, ensuring a clear distinction between internal application errors and external API failures.
 •	Version 5.0 (October 12, 2025) - AI Agent
 o	Major Architectural Update: Transitioned from a purely keyword-based retrieval system to a Hybrid Search model, combining lexical (keyword) and semantic (vector) search for significantly improved context relevance.
 o	Decoupled Embedding Logic: Introduced a new, separate EmbeddingClient.php to handle all vector embedding generation. This modular design allows for future swapping of embedding providers (e.g., to a local model) without altering core logic.
@@ -11,10 +15,9 @@ o	Overhauled Memory Retrieval: The getRelevantContext() method in MemoryManager.
 o	Semantic Memory Encoding: The updateMemory() method now automatically generates and stores a vector embedding for every new interaction.
 o	Enhanced Configuration: Updated config.php with a master switch (ENABLE_EMBEDDINGS) to enable or disable the vector system, and tuning parameters (HYBRID_SEARCH_ALPHA, VECTOR_SEARCH_TOP_K) to control the search behavior.
 o	UI Update: Version badge in index.php updated to v5.0.
- 
 1. Executive Summary
 This document provides a comprehensive and multi-layered overview of "Project NEMI," an advanced AI initiative focused on developing a dynamic, persistent, and self-organizing memory system. The project's architecture has evolved significantly from a simple data logger into a sophisticated, reinforcement-based knowledge graph that leverages a Retrieval-Augmented Generation (RAG) framework.
-This guide details the project's conceptual evolution, from its initial goals to its current state, and provides a complete technical specification for version 5.0. This version introduces a resilient Hybrid Search capability, fusing traditional keyword retrieval with modern semantic vector search. The system is designed to mimic key aspects of human memory, including the ability to prioritize relevant information, establish connections between concepts, and gradually "forget" outdated or irrelevant data, thereby providing a robust foundation for a memory-driven AGI.
+This guide details the project's conceptual evolution, from its initial goals to its current state, and provides a complete technical specification for version 5.1. This version introduces a resilient Hybrid Search capability, fusing traditional keyword retrieval with modern semantic vector search. The system is designed to mimic key aspects of human memory, including the ability to prioritize relevant information, establish connections between concepts, and gradually "forget" outdated or irrelevant data, thereby providing a robust foundation for a memory-driven AGI.
 2. Architectural Evolution
 The architecture of Project NEMI has progressed through several key versions, with each stage addressing the limitations of the previous one.
 2.1. V0.0: Foundational Concept - The Simple Log
@@ -42,7 +45,16 @@ This version introduced the crucial concept of memory relevance, turning the sta
 3.	Forgetting (Decay/Penalty): A decay mechanism periodically reduces the score of memories that have not been accessed recently, causing them to become less likely to be recalled.
 4.	Retrieval-Augmented Generation (RAG): Before generating a response, the system queries its long-term memory for the highest-scoring information related to the current user input. This retrieved information is engineered into the final prompt, giving the AI a relevant "working memory."
 5.	Pruning: To manage storage size, a script removes the interactions with the lowest scores once a certain threshold is reached.
-2.4. V5.0: Hybrid Search and Decoupled Architecture
+2.4. V4.0: Practical Implementation and the "Brain Analogy"
+This version marked the critical transition from the theoretical V3.0 architecture to a tangible, functional application built in PHP. The core challenge was to translate the concepts of a dynamic knowledge graph, relevance scoring, and RAG into a resilient and modular software structure.
+•	Theory: The entire memory and response workflow can be modeled after a biological brain with distinct components for conscious thought, memory management, and communication. This architectural pattern, termed the "Brain Analogy," promotes a clear separation of concerns and makes the complex system easier to manage and extend.
+•	Core Mechanisms:
+1.	Orchestration (index.php): Acts as the "conscious thought," handling the immediate user request and coordinating the entire sequence of operations: recalling memories, building the prompt, getting the AI response, and updating the memory.
+2.	Memory System (MemoryManager.php): Represents the core brain, responsible for all memory logic. It implements the keyword-based retrieval, the reward/decay scoring system from V3.0, and the pruning of old memories.
+3.	Communication (GeminiClient.php): Functions as the "senses and voice," managing all outbound API calls to the generative AI model and parsing its responses.
+4.	Rules & Personality (config.php): A centralized configuration file that acts as the brain's "personality," defining all the rules for learning, forgetting, and responding.
+•	Key Features: This version successfully implemented the complete reinforcement learning loop in code, including the relevance scoring, decay mechanism, user feedback loop, and dynamic tool selection based on user input. Retrieval at this stage was purely lexical (keyword and entity-based), setting the foundation for the more advanced semantic capabilities introduced in later versions.
+2.5. V5.0: Hybrid Search and Decoupled Architecture
 This version represents a major leap in retrieval intelligence, moving beyond the limitations of purely lexical search to a more human-like conceptual understanding.
 •	Theory: The most relevant memories are found by combining the precision of keyword search with the conceptual breadth of semantic search. A memory's relevance is no longer just its score but also its contextual similarity to the user's query.
 •	Core Mechanisms:
@@ -52,8 +64,8 @@ This version represents a major leap in retrieval intelligence, moving beyond th
 	Keyword Search: The original keyword and entity search is performed to find memories with exact lexical matches and high relevance scores.
 	Fusion: The results from both searches are merged and re-ranked using a weighted algorithm (HYBRID_SEARCH_ALPHA) to produce a final list that is both semantically relevant and lexically precise.
 3.	Decoupled Embedding Client: To ensure resilience and future-proofing, all embedding logic is isolated into a dedicated EmbeddingClient.php. This allows the embedding provider (e.g., Gemini API, a local model) to be changed with minimal impact on the rest of the application.
-3. Technical Specification and Implementation: Version 5.0
-Version 5.0 is a mature PHP implementation of the Hybrid Search RAG architecture.
+3. Technical Specification and Implementation: Version 5.1
+Version 5.1 is a mature PHP implementation of the Hybrid Search RAG architecture.
 3.1. The "Brain Analogy": System Components
 The project is structured into modular components, each with a distinct role:
 •	index.php (Conscious Thought): The main orchestrator. It handles the user request, coordinates with the memory and AI client, builds the final prompt, and renders the UI.
@@ -61,12 +73,13 @@ The project is structured into modular components, each with a distinct role:
 •	GeminiClient.php (Senses & Voice): The dedicated communicator for generating content. It handles all conversational interactions with the Google Gemini API.
 •	EmbeddingClient.php (The Conceptual Librarian): A new, dedicated communicator for generating embeddings. It translates text into its semantic meaning (vectors) and is decoupled from the GeminiClient.
 •	config.php (Personality & Rules): A centralized configuration file defining API keys, file paths, and the constants that govern the memory and hybrid search logic.
-3.2. Key Features and Enhancements in V5.0
+3.2. Key Features and Enhancements in V5.1
 •	Hybrid Search System: The core memory retrieval engine now combines keyword-based lexical search with vector-based semantic search, providing superior contextual recall.
 •	Decoupled Embedding Logic: A new EmbeddingClient.php isolates all embedding-related API calls, making the system resilient and easy to adapt to other embedding providers (e.g., local models via Ollama).
 •	Configurable Search Behavior: The config.php file contains a master switch (ENABLE_EMBEDDINGS) to turn the entire vector system on or off, as well as tuning parameters (HYBRID_SEARCH_ALPHA) to balance between keyword and semantic results.
 •	Automatic Semantic Encoding: The updateMemory() process now automatically creates a vector embedding for each new conversation turn, ensuring all new memories are semantically searchable.
-4. Complete Source Code (Version 5.0)
+•	Robust Error Handling: The GeminiClient.php now features enhanced error handling, providing clearer, user-friendly messages to the UI while logging detailed technical information for easier debugging.
+4. Complete Source Code (Version 5.1)
 config.php
 code PHP
 downloadcontent_copy
@@ -231,7 +244,7 @@ class GeminiClient
     public function generateResponse(string $prompt, array $enabledTools = []): string
     {
         if (empty($this->apiKey) || $this->apiKey === 'YOUR_GEMINI_API_KEY_HERE') {
-            return "ERROR: Gemini API Key is not configured in config.php.";
+            return "ERROR: Gemini API Key is not configured in config.php. Please set a valid key to proceed.";
         }
         
         $rawResponse = '';
@@ -268,19 +281,44 @@ class GeminiClient
             curl_close($ch);
 
             $decodedResponse = json_decode($rawResponse, true);
-            if (json_last_error() !== JSON_ERROR_NONE) { throw new Exception("JSON Decode Error."); }
+            if (json_last_error() !== JSON_ERROR_NONE) { throw new Exception("JSON Decode Error for API response."); }
 
             $responseText = $decodedResponse['candidates'][0]['content']['parts'][0]['text'] ?? null;
             if ($responseText === null) {
-                throw new Exception("Could not find text part in response, check for tool calls.");
+                throw new Exception("Could not find text part in the API response. The response may contain a tool call or be empty.");
             }
             
             $this->logPrompt($prompt, $requestBody, $rawResponse);
             return $responseText;
 
         } catch (Exception $e) {
-            $this->logPrompt($prompt, $requestBody, $rawResponse, $e->getMessage());
-            return "Error: " . $e->getMessage();
+            $detailedError = $e->getMessage();
+            $userFriendlyError = "An unexpected error occurred while communicating with the AI. Please check the system logs for more details.";
+
+            // Attempt to parse a more specific error message from the API's raw response
+            if (!empty($rawResponse)) {
+                $decodedError = json_decode($rawResponse, true);
+                if (isset($decodedError['error']['message'])) {
+                    $apiErrorMsg = $decodedError['error']['message'];
+                    $detailedError = "API Error: " . $apiErrorMsg; // Overwrite for cleaner logs
+
+                    // Tailor the user-facing message for common, understandable errors
+                    if (isset($decodedError['error']['status'])) {
+                        switch ($decodedError['error']['status']) {
+                            case 'INVALID_ARGUMENT':
+                                $userFriendlyError = "There was an issue with the request sent to the AI, possibly due to a configuration problem or invalid input.";
+                                break;
+                            case 'PERMISSION_DENIED':
+                                $userFriendlyError = "Authentication with the AI service failed. Please verify that the API key is correct and has the necessary permissions.";
+                                break;
+                        }
+                    }
+                }
+            }
+            
+            // Log the detailed, technical error and return the safe, user-friendly one.
+            $this->logPrompt($prompt, $requestBody, $rawResponse, $detailedError);
+            return "ERROR: " . $userFriendlyError;
         }
     }
 }
@@ -359,7 +397,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['prompt'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project NEMI v5.0 (Hybrid Search)</title>
+    <title>Project NEMI v5.1 (Hybrid Search)</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #212529; color: #e9ecef; }
@@ -372,7 +410,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['prompt'])) {
 <body>
     <div class="container mt-5">
         <div class="text-center mb-4">
-            <h1 class="display-4">Project NEMI <span class="badge bg-success">v5.0</span></h1>
+            <h1 class="display-4">Project NEMI <span class="badge bg-success">v5.1</span></h1>
             <p class="lead text-muted">AI with Hybrid Vector Search</p>
         </div>
         <div class="card bg-dark mb-3">
@@ -694,7 +732,6 @@ class MemoryManager
     }
 }
   
- 
 Nota Bene: Rules for Future Document Updates
 AI and/or agents must adhere to the following rules to maintain the consistency and integrity of this document.
 1.	Strict Versioning: All modifications, regardless of size, mandate a version increment.
@@ -707,5 +744,4 @@ o	Major (e.g., 4.0 -> 5.0): Significant architectural changes or rewrites that a
 5.	Centralize Configuration: All new constants, thresholds, or configurable parameters must be added exclusively to config.php. No hardcoded "magic values" are permitted in the logic of other files.
 6.	Maintain Structural Integrity: The existing numbered heading structure of this document must be preserved. New content should be added as subsections within the relevant existing section. Do not alter the primary document flow.
 7.	Direct and Specific Language: All descriptions of changes must be technical, direct, and unambiguous. Clearly state what was changed, why it was changed, and reference the specific function or component affected.
-
 
