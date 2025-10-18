@@ -14,7 +14,6 @@ define('MODEL_ID', 'gemini-2.5-flash-lite');
 define('API_ENDPOINT', 'generateContent');
 
 
-
 // --- Embedding Configuration ---
 // A master switch to turn the entire vector/semantic search system on or off.
 // Set to 'false' to revert to a purely keyword-based search.
