@@ -1,6 +1,11 @@
 <?php
 // Now requires the new EmbeddingClient
 require_once 'EmbeddingClient.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use NlpTools\Tokenizers\WhitespaceAndPunctuationTokenizer;
+use NlpTools\Stemmers\PorterStemmer;
+use NlpTools\Utils\StopWords; // Corrected use statement
 
 class MemoryManager
 {
@@ -18,6 +23,8 @@ class MemoryManager
         // Instantiate the client only if embeddings are enabled.
         // This is where you would swap in a different client (e.g., new OllamaEmbeddingClient()).
         $this->embeddingClient = ENABLE_EMBEDDINGS ? new EmbeddingClient() : null;
+
+        // Stop words are now loaded from config.php via NLP_STOP_WORDS constant
     }
 
     private function loadMemory(): void
@@ -294,11 +301,32 @@ class MemoryManager
 
     private function extractEntities(string $text): array
     {
+        // 1. Sanitize and Normalize Text
         $text = strtolower($text);
-        $text = preg_replace('/https?:\/\/[^\s]+/', ' ', $text);
-        $words = preg_split('/[\s,\.\?\!\[\]:]+/', $text);
-        $stopWords = ['a', 'an', 'the', 'is', 'in', 'it', 'of', 'for', 'on', 'what', 'were', 'my', 'that', 'we', 'to', 'user', 'note', 'system', 'please'];
-        return array_filter(array_unique($words), fn($word) => !in_array($word, $stopWords) && strlen($word) > 3);
+        $text = preg_replace('/https?:\/\/[^\s]+/', ' ', $text); // Keep URL removal
+
+        // 2. Tokenize the text using the library's robust tokenizer
+        $tokenizer = new WhitespaceAndPunctuationTokenizer();
+        $tokens = $tokenizer->tokenize($text);
+
+        // 3. Filter out stop words using the list from config.php
+        // Use StopWords class from NlpTools\Utils and its transform method
+        $stopWords = new StopWords(NLP_STOP_WORDS);
+        $filteredTokens = [];
+        foreach ($tokens as $token) {
+            $transformedToken = $stopWords->transform($token);
+            if ($transformedToken !== null) {
+                $filteredTokens[] = $transformedToken;
+            }
+        }
+
+        // 4. Reduce words to their root form (stemming)
+        $stemmer = new PorterStemmer();
+        $stemmedTokens = array_map([$stemmer, 'stem'], $filteredTokens);
+
+        // 5. Final cleanup and return unique entities
+        // Replace the arbitrary strlen > 3 with a slightly more lenient filter
+        return array_filter(array_unique($stemmedTokens), fn($word) => strlen($word) > 2);
     }
 
     private function normalizeAndExpandEntities(array $baseEntities): array

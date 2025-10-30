@@ -24,6 +24,14 @@ define('ENABLE_EMBEDDINGS', true);
 define('EMBEDDING_MODEL_ID', 'text-embedding-004');
 
 
+// --- NLP Configuration ---
+define('NLP_STOP_WORDS', [
+    'a', 'an', 'the', 'is', 'in', 'it', 'of', 'for', 'on', 'what', 'were',
+    'my', 'that', 'we', 'to', 'user', 'note', 'system', 'please', 'and'
+    // Add other words as needed
+]);
+
+
 // --- File Paths ---
 // Defines the directory where all persistent data (memory files) will be stored.
 define('DATA_DIR', __DIR__ . '/data');
