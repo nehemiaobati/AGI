@@ -280,6 +280,17 @@ class MemoryManager
         }
     }
 
+    public function addTextFeedback(string $interactionId, string $feedbackText): void
+    {
+        if (!isset($this->interactions[$interactionId])) return;
+
+        // You might want to process this feedback further (e.g., sentiment analysis, entity extraction)
+        // For now, we'll just store it.
+        $this->interactions[$interactionId]['user_feedback_text'] = $feedbackText;
+        // Optionally, you could adjust relevance scores based on text feedback,
+        // e.g., if you later classify the text feedback as positive or negative.
+    }
+
     private function pruneMemory(): void
     {
         if (count($this->interactions) > PRUNING_THRESHOLD) {

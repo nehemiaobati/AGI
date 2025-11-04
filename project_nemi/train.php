@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL & ~E_DEPRECATED);
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/config.php';
 
 use NlpTools\Tokenizers\WhitespaceAndPunctuationTokenizer;
@@ -44,7 +44,7 @@ function preprocessText(string $text): array
 }
 
 // --- 2. Load Training Data ---
-$trainingDataFile = __DIR__ . '/training_data.csv';
+$trainingDataFile = __DIR__ . '/test/training_data.csv';
 $trainingData = [];
 
 if (($handle = fopen($trainingDataFile, 'r')) !== FALSE) {
@@ -88,8 +88,8 @@ $classifier = new MultinomialNBClassifier($featureFactory, $model);
 
 
 // --- 6. Serialize and Save Models ---
-$tfIdfModelFile = __DIR__ . '/tf_idf.model';
-$classifierModelFile = __DIR__ . '/classifier.model';
+$tfIdfModelFile = DATA_DIR . '/tf_idf.model';
+$classifierModelFile = DATA_DIR . '/classifier.model';
 
 file_put_contents($tfIdfModelFile, serialize($featureFactory));
 file_put_contents($classifierModelFile, serialize($classifier));

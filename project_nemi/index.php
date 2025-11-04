@@ -3,8 +3,36 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require_once 'config.php';
+require_once 'train.php'; // Needed for preprocessText function
 require_once 'MemoryManager.php';
 require_once 'GeminiClient.php';
+require_once __DIR__ . '/../vendor/autoload.php'; // If not already loaded
+
+use NlpTools\Documents\TokensDocument;
+use NlpTools\Tokenizers\WhitespaceTokenizer;
+use NlpTools\Stemmers\PorterStemmer;
+
+$featureFactory = null;
+$classifier = null;
+
+try {
+    $tfIdfModelPath = DATA_DIR . '/tf_idf.model'; // Adjust path if models are elsewhere
+    $classifierModelPath = DATA_DIR . '/classifier.model'; // Adjust path
+
+    if (!file_exists($tfIdfModelPath) || !file_exists($classifierModelPath)) {
+        // Handle error: models not found. You might want to log this or throw an exception.
+        error_log("Classification models not found. Run train.php first.");
+    } else {
+        $featureFactory = unserialize(file_get_contents($tfIdfModelPath));
+        $classifier = unserialize(file_get_contents($classifierModelPath));
+
+        if ($featureFactory === false || $classifier === false) {
+            error_log("Failed to unserialize classification models. Models might be corrupted.");
+        }
+    }
+} catch (Exception $e) {
+    error_log("Error loading classification models: " . $e->getMessage());
+}
 
 // Handle User Feedback
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['feedback'], $_GET['id'])) {
@@ -16,10 +44,33 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['feedback'], $_GET['id'])
     exit();
 }
 
-function runCoreLogic(string $userInput): array
+// Handle Optional Text Feedback
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['text_feedback'], $_POST['interaction_id_for_feedback'])) {
+    $memory = new MemoryManager();
+    $interactionIdForFeedback = $_POST['interaction_id_for_feedback'];
+    $textFeedback = trim($_POST['text_feedback']);
+
+    if (!empty($textFeedback)) {
+        $memory->addTextFeedback($interactionIdForFeedback, $textFeedback);
+        $memory->saveMemory();
+    }
+    // Redirect to prevent form resubmission on refresh
+    header("Location: index.php");
+    exit();
+}
+
+function runCoreLogic(string $userInput, $featureFactory, $classifier): array
 {
     $memory = new MemoryManager();
     $gemini = new GeminiClient();
+
+    $predictedIntent = "unknown";
+    if ($classifier && $featureFactory) {
+        $processedTokens = preprocessText($userInput); // Use the same preprocessing as during training
+        $document = new TokensDocument($processedTokens);
+
+        $predictedIntent = $classifier->classify(['feedback_positive', 'feedback_negative'], $document);
+    }
 
     // Dynamic Tool Selection Logic
     $toolsToUse = ['googleSearch']; // Enable search by default
@@ -45,7 +96,8 @@ function runCoreLogic(string $userInput): array
         'userInput' => $userInput,
         'aiResponse' => $aiResponse,
         'context' => $context,
-        'interactionId' => $newInteractionId
+        'interactionId' => $newInteractionId,
+        'predictedIntent' => $predictedIntent
     ];
 }
 
@@ -57,10 +109,11 @@ $interactionId = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['prompt'])) {
     $userInput = trim($_POST['prompt']);
-    $result = runCoreLogic($userInput);
+    $result = runCoreLogic($userInput, $featureFactory, $classifier);
     $aiResponse = $result['aiResponse'];
     $context = $result['context'];
     $interactionId = $result['interactionId'];
+    $predictedIntent = $result['predictedIntent'];
 }
 ?>
 <!DOCTYPE html>
@@ -116,6 +169,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['prompt'])) {
                     <p class="card-text"><?= nl2br(htmlspecialchars($userInput)) ?></p>
                 </div>
             </div>
+            <?php if ($predictedIntent !== 'feedback_positive' && $predictedIntent !== 'feedback_negative'): ?>
+                <div class="card bg-dark mb-3">
+                    <div class="card-header">Predicted Intent</div>
+                    <div class="card-body">
+                        <p class="card-text"><?= htmlspecialchars($predictedIntent) ?></p>
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="card bg-dark mb-3">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     AI Response
@@ -128,6 +189,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['prompt'])) {
                     <p class="card-text"><?= nl2br(htmlspecialchars($aiResponse)) ?></p>
                 </div>
             </div>
+            <?php if (!empty($interactionId)): ?>
+            <div class="card bg-dark mb-3">
+                <div class="card-header">Optional Text Feedback</div>
+                <div class="card-body">
+                    <form action="index.php" method="post">
+                        <input type="hidden" name="interaction_id_for_feedback" value="<?= htmlspecialchars($interactionId) ?>">
+                        <textarea class="form-control bg-dark text-white mb-3" name="text_feedback" rows="2" placeholder="Provide additional feedback..."></textarea>
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">Submit Text Feedback</button>
+                    </form>
+                </div>
+            </div>
+            <?php endif; ?>
             <div class="card bg-dark">
                 <div class="card-header"><a class="text-decoration-none" data-bs-toggle="collapse" href="#debugCollapse">Debug: Recalled Context</a></div>
                 <div class="collapse" id="debugCollapse">
