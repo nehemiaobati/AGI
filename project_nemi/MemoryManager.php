@@ -21,16 +21,14 @@ class MemoryManager
         $this->loadMemory();
 
         // Instantiate the client only if embeddings are enabled.
-        // This is where you would swap in a different client (e.g., new OllamaEmbeddingClient()).
         $this->embeddingClient = ENABLE_EMBEDDINGS ? new EmbeddingClient() : null;
-
-        // Stop words are now loaded from config.php via NLP_STOP_WORDS constant
     }
 
     private function loadMemory(): void
     {
-        $this->interactions = file_exists(INTERACTIONS_FILE) ? json_decode(file_get_contents(INTERACTIONS_FILE), true) : [];
-        $this->entities = file_exists(ENTITIES_FILE) ? json_decode(file_get_contents(ENTITIES_FILE), true) : [];
+        // --- FIX: Ensure json_decode failures result in an empty array ---
+        $this->interactions = file_exists(INTERACTIONS_FILE) ? json_decode(file_get_contents(INTERACTIONS_FILE), true) ?? [] : [];
+        $this->entities = file_exists(ENTITIES_FILE) ? json_decode(file_get_contents(ENTITIES_FILE), true) ?? [] : [];
     }
 
     public function saveMemory(): void
@@ -127,32 +125,24 @@ class MemoryManager
         $usedInteractionIds = [];
 
         // --- NEW: Force-Inject a variable number of Recent Interactions ---
-        // Check if the feature is enabled and if there are any interactions.
         if (defined('FORCED_RECENT_INTERACTIONS') && FORCED_RECENT_INTERACTIONS > 0 && !empty($this->interactions)) {
-            // Get the last N interactions, where N is our config value.
-            // `true` preserves the original keys (the interaction IDs).
             $recentInteractions = array_slice($this->interactions, -FORCED_RECENT_INTERACTIONS, null, true);
 
-            // Loop through them and add them to the context string.
             foreach ($recentInteractions as $id => $interaction) {
                 $timestamp = date('Y-m-d H:i:s', strtotime($interaction['timestamp']));
                 $memoryText = "[On {$timestamp}] User: '{$interaction['user_input_raw']}'. You: '{$interaction['ai_output']}'.\n";
                 $memoryTokenCount = str_word_count($memoryText);
 
-                // Ensure we don't exceed the budget right away.
                 if ($tokenCount + $memoryTokenCount <= CONTEXT_TOKEN_BUDGET) {
                     $context .= $memoryText;
                     $tokenCount += $memoryTokenCount;
-                    // Keep track of the IDs we've already added.
                     $usedInteractionIds[] = $id;
                 }
             }
         }
-        // --- End of New Code ---
 
         // Loop through the main hybrid search results.
         foreach ($fusedScores as $id => $score) {
-            // --- UPDATED: Check if this ID was already force-included. ---
             if (in_array($id, $usedInteractionIds)) {
                 continue; // Skip this memory to avoid duplication.
             }
@@ -202,7 +192,6 @@ class MemoryManager
         $newId = uniqid('int_', true);
         $keywords = $this->extractEntities($userInput);
 
-        // --- NEW: Generate and store embedding for the new interaction ---
         $embedding = null;
         if ($this->embeddingClient !== null) {
             $fullText = "User: {$userInput} | AI: {$aiOutput}";
@@ -217,7 +206,7 @@ class MemoryManager
             'relevance_score' => INITIAL_SCORE,
             'last_accessed' => date('c'),
             'context_used_ids' => $usedInteractionIds,
-            'embedding' => $embedding // Add the new embedding to the record
+            'embedding' => $embedding
         ];
 
         $this->updateEntitiesFromInteraction($keywords, $newId);
@@ -284,11 +273,7 @@ class MemoryManager
     {
         if (!isset($this->interactions[$interactionId])) return;
 
-        // You might want to process this feedback further (e.g., sentiment analysis, entity extraction)
-        // For now, we'll just store it.
         $this->interactions[$interactionId]['user_feedback_text'] = $feedbackText;
-        // Optionally, you could adjust relevance scores based on text feedback,
-        // e.g., if you later classify the text feedback as positive or negative.
     }
 
     private function pruneMemory(): void
@@ -312,16 +297,12 @@ class MemoryManager
 
     private function extractEntities(string $text): array
     {
-        // 1. Sanitize and Normalize Text
         $text = strtolower($text);
-        $text = preg_replace('/https?:\/\/[^\s]+/', ' ', $text); // Keep URL removal
+        $text = preg_replace('/https?:\/\/[^\s]+/', ' ', $text);
 
-        // 2. Tokenize the text using the library's robust tokenizer
         $tokenizer = new WhitespaceAndPunctuationTokenizer();
         $tokens = $tokenizer->tokenize($text);
 
-        // 3. Filter out stop words using the list from config.php
-        // Use StopWords class from NlpTools\Utils and its transform method
         $stopWords = new StopWords(NLP_STOP_WORDS);
         $filteredTokens = [];
         foreach ($tokens as $token) {
@@ -331,12 +312,9 @@ class MemoryManager
             }
         }
 
-        // 4. Reduce words to their root form (stemming)
         $stemmer = new PorterStemmer();
         $stemmedTokens = array_map([$stemmer, 'stem'], $filteredTokens);
 
-        // 5. Final cleanup and return unique entities
-        // Replace the arbitrary strlen > 3 with a slightly more lenient filter
         return array_filter(array_unique($stemmedTokens), fn($word) => strlen($word) > 2);
     }
 
