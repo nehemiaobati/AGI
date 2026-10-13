@@ -22,8 +22,19 @@ class MemoryManager
 
     private function loadMemory(): void
     {
-        $this->interactions = file_exists(INTERACTIONS_FILE) ? json_decode(file_get_contents(INTERACTIONS_FILE), true) : [];
-        $this->entities = file_exists(ENTITIES_FILE) ? json_decode(file_get_contents(ENTITIES_FILE), true) : [];
+        if (file_exists(INTERACTIONS_FILE)) {
+            $data = json_decode(file_get_contents(INTERACTIONS_FILE), true);
+            $this->interactions = is_array($data) ? $data : [];
+        } else {
+            $this->interactions = [];
+        }
+
+        if (file_exists(ENTITIES_FILE)) {
+            $data = json_decode(file_get_contents(ENTITIES_FILE), true);
+            $this->entities = is_array($data) ? $data : [];
+        } else {
+            $this->entities = [];
+        }
     }
 
     public function saveMemory(): void
@@ -31,8 +42,8 @@ class MemoryManager
         ksort($this->interactions);
         ksort($this->entities);
         $options = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES;
-        file_put_contents(INTERACTIONS_FILE, json_encode($this->interactions, $options));
-        file_put_contents(ENTITIES_FILE, json_encode($this->entities, $options));
+        file_put_contents(INTERACTIONS_FILE, json_encode($this->interactions, $options), LOCK_EX);
+        file_put_contents(ENTITIES_FILE, json_encode($this->entities, $options), LOCK_EX);
     }
 
     // --- Core Memory Retrieval (HYBRID SEARCH) ---
@@ -43,10 +54,14 @@ class MemoryManager
      */
     private function cosineSimilarity(array $vecA, array $vecB): float
     {
+        $count = count($vecA);
+        if ($count === 0 || $count !== count($vecB)) {
+            return 0.0;
+        }
+
         $dotProduct = 0.0;
         $magA = 0.0;
         $magB = 0.0;
-        $count = count($vecA);
 
         for ($i = 0; $i < $count; $i++) {
             $dotProduct += $vecA[$i] * $vecB[$i];
@@ -57,8 +72,8 @@ class MemoryManager
         $magA = sqrt($magA);
         $magB = sqrt($magB);
 
-        if ($magA == 0 || $magB == 0) {
-            return 0;
+        if ($magA <= 0.0 || $magB <= 0.0) {
+            return 0.0;
         }
 
         return $dotProduct / ($magA * $magB);
@@ -122,9 +137,10 @@ class MemoryManager
         // --- NEW: Force-Inject a variable number of Recent Interactions ---
         // Check if the feature is enabled and if there are any interactions.
         if (defined('FORCED_RECENT_INTERACTIONS') && FORCED_RECENT_INTERACTIONS > 0 && !empty($this->interactions)) {
-            // Get the last N interactions, where N is our config value.
-            // `true` preserves the original keys (the interaction IDs).
-            $recentInteractions = array_slice($this->interactions, -FORCED_RECENT_INTERACTIONS, null, true);
+            // Sort chronologically to deterministically extract the latest interactions
+            $chronological = $this->interactions;
+            uasort($chronological, fn($a, $b) => strcmp($a['timestamp'] ?? '', $b['timestamp'] ?? ''));
+            $recentInteractions = array_slice($chronological, -FORCED_RECENT_INTERACTIONS, null, true);
 
             // Loop through them and add them to the context string.
             foreach ($recentInteractions as $id => $interaction) {
@@ -222,8 +238,12 @@ class MemoryManager
     private function updateEntitiesFromInteraction(array $keywords, string $interactionId): void
     {
         $isNovel = false;
+        $normalizedKeywords = [];
         foreach ($keywords as $keyword) {
-            $entityKey = strtolower($keyword);
+            $entityKey = strtolower(trim($keyword));
+            if ($entityKey === '') continue;
+            $normalizedKeywords[] = $entityKey;
+
             if (!isset($this->entities[$entityKey])) {
                 $isNovel = true;
                 $this->entities[$entityKey] = [
@@ -237,19 +257,20 @@ class MemoryManager
             }
             $this->entities[$entityKey]['access_count']++;
             $this->entities[$entityKey]['relevance_score'] += REWARD_SCORE;
-            if (!in_array($interactionId, $this->entities[$entityKey]['mentioned_in'])) {
+            if (!in_array($interactionId, $this->entities[$entityKey]['mentioned_in'], true)) {
                 $this->entities[$entityKey]['mentioned_in'][] = $interactionId;
             }
         }
 
-        if ($isNovel) {
+        if ($isNovel && isset($this->interactions[$interactionId])) {
             $this->interactions[$interactionId]['relevance_score'] += NOVELTY_BONUS;
         }
 
-        if (count($keywords) > 1) {
-            foreach ($keywords as $k1) {
-                foreach ($keywords as $k2) {
-                    if ($k1 !== $k2) {
+        $uniqueNormalized = array_values(array_unique($normalizedKeywords));
+        if (count($uniqueNormalized) > 1) {
+            foreach ($uniqueNormalized as $k1) {
+                foreach ($uniqueNormalized as $k2) {
+                    if ($k1 !== $k2 && isset($this->entities[$k1])) {
                         $this->entities[$k1]['relationships'][$k2] = ($this->entities[$k1]['relationships'][$k2] ?? 0) + RELATIONSHIP_STRENGTH_INCREMENT;
                     }
                 }
@@ -277,7 +298,22 @@ class MemoryManager
     {
         if (count($this->interactions) > PRUNING_THRESHOLD) {
             uasort($this->interactions, fn($a, $b) => ($a['relevance_score'] ?? 1.0) <=> ($b['relevance_score'] ?? 1.0));
-            $this->interactions = array_slice($this->interactions, count($this->interactions) - PRUNING_THRESHOLD, null, true);
+            $surviving = array_slice($this->interactions, count($this->interactions) - PRUNING_THRESHOLD, null, true);
+            $prunedIds = array_diff(array_keys($this->interactions), array_keys($surviving));
+            $this->interactions = $surviving;
+
+            if (!empty($prunedIds)) {
+                $prunedMap = array_flip($prunedIds);
+                foreach ($this->entities as $entityKey => &$entityData) {
+                    if (!empty($entityData['mentioned_in'])) {
+                        $entityData['mentioned_in'] = array_values(array_filter(
+                            $entityData['mentioned_in'],
+                            fn($id) => !isset($prunedMap[$id])
+                        ));
+                    }
+                }
+                unset($entityData);
+            }
         }
     }
 
@@ -296,9 +332,18 @@ class MemoryManager
     {
         $text = strtolower($text);
         $text = preg_replace('/https?:\/\/[^\s]+/', ' ', $text);
-        $words = preg_split('/[\s,\.\?\!\[\]:]+/', $text);
-        $stopWords = ['a', 'an', 'the', 'is', 'in', 'it', 'of', 'for', 'on', 'what', 'were', 'my', 'that', 'we', 'to', 'user', 'note', 'system', 'please'];
-        return array_filter(array_unique($words), fn($word) => !in_array($word, $stopWords) && strlen($word) > 3);
+        $words = preg_split('/[^\p{L}\p{N}_]+/u', $text, -1, PREG_SPLIT_NO_EMPTY);
+        $stopWords = [
+            'a', 'an', 'the', 'is', 'in', 'it', 'of', 'for', 'on', 'what', 'were',
+            'my', 'that', 'we', 'to', 'user', 'note', 'system', 'please', 'this',
+            'with', 'have', 'from', 'they', 'will', 'would', 'there', 'their'
+        ];
+        $stopMap = array_flip($stopWords);
+        $filtered = array_filter(
+            array_unique($words),
+            fn($word) => !isset($stopMap[$word]) && mb_strlen($word) > 3
+        );
+        return array_values($filtered);
     }
 
     private function normalizeAndExpandEntities(array $baseEntities): array

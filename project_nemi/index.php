@@ -7,11 +7,15 @@ require_once 'MemoryManager.php';
 require_once 'GeminiClient.php';
 
 // Handle User Feedback
-if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['feedback'], $_GET['id'])) {
-    $memory = new MemoryManager();
-    $isGood = $_GET['feedback'] === 'good';
-    $memory->applyFeedback($_GET['id'], $isGood);
-    $memory->saveMemory();
+if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['feedback'], $_GET['id'])) {
+    $feedback = (string)$_GET['feedback'];
+    $id = trim((string)$_GET['id']);
+    if (in_array($feedback, ['good', 'bad'], true) && $id !== '') {
+        $memory = new MemoryManager();
+        $isGood = ($feedback === 'good');
+        $memory->applyFeedback($id, $isGood);
+        $memory->saveMemory();
+    }
     header("Location: index.php");
     exit();
 }
@@ -24,9 +28,10 @@ function runCoreLogic(string $userInput): array
     // Dynamic Tool Selection Logic
     $toolsToUse = ['googleSearch']; // Enable search by default
     $urlPattern = '/\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i';
+    $promptForAI = $userInput;
     if (preg_match($urlPattern, $userInput)) {
-        // The prompt guides the AI to use its search tool to analyze the URL
-        $userInput .= "\n\n[SYSTEM NOTE: The user has provided a URL. Prioritize analyzing its content.]";
+        // Guide the AI to use its search tool to analyze the URL
+        $promptForAI .= "\n\n[SYSTEM NOTE: The user has provided a URL. Prioritize analyzing its content.]";
     }
 
     $recalled = $memory->getRelevantContext($userInput);
@@ -34,7 +39,7 @@ function runCoreLogic(string $userInput): array
 
     $systemPrompt = $memory->getTimeAwareSystemPrompt();
     $currentTime = "CURRENT_TIME: " . date('Y-m-d H:i:s T');
-    $finalPrompt = "{$systemPrompt}\n\n---RECALLED CONTEXT---\n{$context}---END CONTEXT---\n\n{$currentTime}\n\nUser query: \"{$userInput}\"";
+    $finalPrompt = "{$systemPrompt}\n\n---RECALLED CONTEXT---\n{$context}---END CONTEXT---\n\n{$currentTime}\n\nUser query: \"{$promptForAI}\"";
 
     $aiResponse = $gemini->generateResponse($finalPrompt, $toolsToUse);
 

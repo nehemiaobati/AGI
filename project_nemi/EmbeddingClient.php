@@ -15,7 +15,8 @@ class EmbeddingClient
     {
         $this->apiKey = GEMINI_API_KEY;
         $this->modelId = EMBEDDING_MODEL_ID;
-        $this->apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/{$this->modelId}:embedContent?key={$this->apiKey}";
+        $keyParam = (!empty($this->apiKey) && $this->apiKey !== 'YOUR_GEMINI_API_KEY_HERE') ? "?key=" . urlencode($this->apiKey) : "";
+        $this->apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/{$this->modelId}:embedContent" . $keyParam;
     }
 
     /**
@@ -30,38 +31,49 @@ class EmbeddingClient
             return null; // Return null if embeddings are disabled in config
         }
 
+        $trimmed = trim($text);
+        if ($trimmed === '') {
+            return null;
+        }
+
+        $ch = curl_init();
         try {
             $requestBody = [
                 'model'   => "models/{$this->modelId}",
-                'content' => ['parts' => [['text' => $text]]]
+                'content' => ['parts' => [['text' => $trimmed]]]
             ];
 
-            $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $this->apiUrl);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($requestBody));
             curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 
             $rawResponse = curl_exec($ch);
             if (curl_errno($ch)) {
                 throw new Exception("cURL Error getting embedding: " . curl_error($ch));
             }
-            curl_close($ch);
+
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            if ($httpCode !== 200) {
+                throw new Exception("API Error ({$httpCode}) getting embedding: " . $rawResponse);
+            }
 
             $decodedResponse = json_decode($rawResponse, true);
             $embedding = $decodedResponse['embedding']['values'] ?? null;
 
-            if ($embedding === null) {
-                // Log the actual response for debugging
+            if ($embedding === null || !is_array($embedding)) {
                 error_log("Failed to find embedding in API response: " . $rawResponse);
-                throw new Exception("Could not find embedding in API response.");
+                throw new Exception("Could not find embedding values in API response.");
             }
 
             return $embedding;
         } catch (Exception $e) {
             error_log($e->getMessage());
             return null;
+        } finally {
+            curl_close($ch);
         }
     }
 }

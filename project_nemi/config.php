@@ -2,12 +2,13 @@
 
 // --- API Configuration ---
 // The secret key required to authenticate with the Google Gemini API.
-// CRITICAL: Replace 'YOUR_GEMINI_API_KEY_HERE' with your actual key.
-define('GEMINI_API_KEY', 'AIzaSyBEkzJRNr-CvwqVCJQtcYs3bb2M-Ikq0pA');
+// The secret key required to authenticate with the Google Gemini API.
+// Can be set via the GEMINI_API_KEY environment variable.
+define('GEMINI_API_KEY', getenv('GEMINI_API_KEY') ?: '');
 
 // Specifies the exact generative model to use for creating responses.
-// 'gemini-1.5-flash-latest' is a fast and capable model suitable for chat.
-define('MODEL_ID', 'gemini-2.5-flash-lite');
+// Can be overridden via the GEMINI_MODEL_ID environment variable.
+define('MODEL_ID', getenv('GEMINI_MODEL_ID') ?: 'gemini-3.5-flash');
 
 // The specific Gemini API function to call. 'generateContent' is the standard
 // endpoint for getting a complete response from the model.
@@ -17,11 +18,10 @@ define('API_ENDPOINT', 'generateContent');
 // --- Embedding Configuration ---
 // A master switch to turn the entire vector/semantic search system on or off.
 // Set to 'false' to revert to a purely keyword-based search.
-define('ENABLE_EMBEDDINGS', true);
+define('ENABLE_EMBEDDINGS', filter_var(getenv('ENABLE_EMBEDDINGS') !== false ? getenv('ENABLE_EMBEDDINGS') : true, FILTER_VALIDATE_BOOLEAN));
 
 // The specialized model used for converting text into numerical vectors (embeddings).
-// 'text-embedding-004' is optimized for this task and is highly efficient.
-define('EMBEDDING_MODEL_ID', 'text-embedding-004');
+define('EMBEDDING_MODEL_ID', getenv('EMBEDDING_MODEL_ID') ?: 'gemini-embedding-001');
 
 
 // --- File Paths ---
